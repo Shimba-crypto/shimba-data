@@ -276,6 +276,20 @@ app.get("/api/sd/keys/status/:key", (req, res) => {
   res.json({ key: found.key.slice(0, 8) + "...", project: found.project, status: found.status, createdAt: found.createdAt });
 });
 
+app.post("/api/user/key-request", requireUser, (req, res) => {
+  const { name, project, useCase, company } = req.body || {};
+  if (!name || !project) return res.status(400).json({ error: "name and project required" });
+  const keys = readJSON("keys.json") || [];
+  const key = "sd_" + Math.random().toString(36).slice(2, 12) + Date.now().toString(36).slice(-4);
+  const entry = {
+    key, name, email: req.user.email, company: company || "", project, useCase: useCase || "",
+    active: false, status: "pending", createdAt: new Date().toISOString(), requests: 0, userId: req.user.id,
+  };
+  keys.push(entry);
+  writeJSON("keys.json", keys);
+  res.status(201).json({ key, project, status: "pending", message: "submission received. Save this key - an admin will review it." });
+});
+
 app.get("/api/sd/usage", (req, res) => {
   const k = requireKey(req, res);
   if (!k) return;
@@ -307,6 +321,12 @@ app.post("/api/user/login", (req, res) => {
 
 app.get("/api/user/me", requireUser, (req, res) => {
   res.json({ id: req.user.id, name: req.user.name, email: req.user.email, role: req.user.role, createdAt: req.user.createdAt, linkedJohnWebEmail: req.user.linkedJohnWebEmail });
+});
+
+app.get("/api/user/keys", requireUser, (req, res) => {
+  const keys = readJSON("keys.json") || [];
+  const mine = keys.filter((k) => (k.email || "").toLowerCase() === req.user.email.toLowerCase());
+  res.json(mine);
 });
 
 app.post("/api/user/link-johnweb", requireUser, (req, res) => {
