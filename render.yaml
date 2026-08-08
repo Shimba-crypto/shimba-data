@@ -1,13 +1,16 @@
 services:
   - type: web
     name: shimbadata
-    env: node
+    runtime: node
     plan: free
     buildCommand: npm install && npm run build
-    startCommand: node server/index.js
+    startCommand: npm start
+    healthCheckPath: /api/sd/_health
     envVars:
       - key: NODE_ENV
         value: production
       - key: SYNC_INTERVAL_MS
         value: "3600000"
+      - key: PORT
+        value: 10000
     autoDeploy: true
