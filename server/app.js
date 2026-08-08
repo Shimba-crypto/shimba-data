@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import { readJSON, writeJSON, initStorage } from "./storage.js";
 import { rateLimit, trackStats, getUsage } from "./rateLimit.js";
 import { sendCsv } from "./csv.js";
-import { seedAdminIfNeeded, loginAdmin, changePassword, listAdmins, createAdmin, requireAdmin } from "./admin.js";
+import { seedAdminIfNeeded, loginAdmin, changePassword, listAdmins, createAdmin, requireAdmin, requireSuperAdmin, setAdminStatus, removeAdmin } from "./admin.js";
 import { runSync } from "./sync.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -282,6 +282,42 @@ app.post("/api/admin/change-password", requireAdmin, (req, res) => {
   if (newPassword.length < 6) return res.status(400).json({ error: "new password must be at least 6 characters" });
   const ok = changePassword(req.admin.username, oldPassword, newPassword);
   res.json(ok ? { ok: true } : { ok: false, error: "old password incorrect" });
+});
+
+app.get("/api/admin/admins", requireAdmin, (req, res) => {
+  res.json(listAdmins());
+});
+
+app.post("/api/admin/admins", requireAdmin, (req, res) => {
+  const { username, password, role } = req.body || {};
+  if (!username || !password) return res.status(400).json({ error: "username and password required" });
+  if (password.length < 6) return res.status(400).json({ error: "password must be at least 6 characters" });
+  if (role === "super_admin" && req.admin.role !== "super_admin") {
+    return res.status(403).json({ error: "only super_admin can create other super_admins" });
+  }
+  const finalRole = role === "super_admin" ? "super_admin" : "admin";
+  const ok = createAdmin(username, password, finalRole);
+  if (!ok) return res.status(409).json({ error: "username already exists" });
+  res.status(201).json({ ok: true, username, role: finalRole });
+});
+
+app.patch("/api/admin/admins/:username", requireSuperAdmin, (req, res) => {
+  const { active } = req.body || {};
+  const target = listAdmins().find((a) => a.username === req.params.username);
+  if (!target) return res.status(404).json({ error: "admin not found" });
+  if (typeof active === "boolean") {
+    if (req.params.username === req.admin.username && active === false) {
+      return res.status(400).json({ error: "cannot deactivate yourself" });
+    }
+    setAdminStatus(req.params.username, active);
+  }
+  res.json({ ok: true });
+});
+
+app.delete("/api/admin/admins/:username", requireSuperAdmin, (req, res) => {
+  const result = removeAdmin(req.params.username, req.admin.username);
+  if (result.error) return res.status(400).json(result);
+  res.json(result);
 });
 
 app.get("/api/admin/submissions", requireAdmin, (req, res) => {

@@ -67,6 +67,36 @@ export function listAdmins() {
   return readAdmins().map(({ username, role, active, createdAt }) => ({ username, role, active, createdAt }));
 }
 
+export function setAdminStatus(username, active) {
+  const admins = readAdmins();
+  const admin = admins.find((a) => a.username === username);
+  if (!admin) return false;
+  admin.active = active;
+  admin.updatedAt = new Date().toISOString();
+  writeAdmins(admins);
+  if (!active) invalidateTokensForUser(username);
+  return true;
+}
+
+export function removeAdmin(username, requesterUsername) {
+  if (username === requesterUsername) return { error: "cannot remove yourself" };
+  const admins = readAdmins();
+  const target = admins.find((a) => a.username === username);
+  if (!target) return { error: "admin not found" };
+  const remainingSuper = admins.filter((a) => a.username !== username && a.role === "super_admin" && a.active !== false);
+  if (target.role === "super_admin" && remainingSuper.length === 0) return { error: "cannot remove the last super_admin" };
+  const filtered = admins.filter((a) => a.username !== username);
+  writeAdmins(filtered);
+  invalidateTokensForUser(username);
+  return { ok: true };
+}
+
+function invalidateTokensForUser(username) {
+  for (const [token, info] of tokens.entries()) {
+    if (info.username === username) tokens.delete(token);
+  }
+}
+
 export function createAdmin(username, password, role = "admin") {
   const admins = readAdmins();
   if (admins.some((a) => a.username === username)) return false;
@@ -88,6 +118,15 @@ export function requireAdmin(req, res, next) {
   const token = req.headers["x-admin-token"] || req.query.token;
   const admin = verifyToken(token);
   if (!admin) return res.status(401).json({ error: "admin login required" });
+  req.admin = admin;
+  next();
+}
+
+export function requireSuperAdmin(req, res, next) {
+  const token = req.headers["x-admin-token"] || req.query.token;
+  const admin = verifyToken(token);
+  if (!admin) return res.status(401).json({ error: "admin login required" });
+  if (admin.role !== "super_admin") return res.status(403).json({ error: "super_admin role required" });
   req.admin = admin;
   next();
 }
