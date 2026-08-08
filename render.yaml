@@ -13,4 +13,8 @@ services:
         value: "3600000"
       - key: PORT
         value: 10000
+      - key: ADMIN_USERNAME
+        value: admin
+      - key: ADMIN_PASSWORD
+        sync: false
     autoDeploy: true

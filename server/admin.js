@@ -23,16 +23,22 @@ function writeAdmins(admins) {
 export function seedAdminIfNeeded() {
   const admins = readAdmins();
   if (admins.length > 0) return null;
-  const pass = Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 6);
+  const user = process.env.ADMIN_USERNAME || "admin";
+  const pass = process.env.ADMIN_PASSWORD || Math.random().toString(36).slice(2, 10) + Math.random().toString(36).slice(2, 6);
   const hash = bcrypt.hashSync(pass, 10);
-  const admin = { username: "admin", passwordHash: hash, role: "super_admin", createdAt: new Date().toISOString(), active: true };
+  const admin = { username: user, passwordHash: hash, role: "super_admin", createdAt: new Date().toISOString(), active: true };
   writeAdmins([admin]);
-  console.log("========================================================");
-  console.log("  FIRST ADMIN CREATED (save this — shown once!)");
-  console.log("  username: admin");
-  console.log("  password: " + pass);
-  console.log("  Login at /admin and change the password ASAP.");
-  console.log("========================================================");
+  if (process.env.ADMIN_PASSWORD) {
+    console.log(`[admin] seeded admin "${user}" from ADMIN_PASSWORD env`);
+  } else {
+    console.log("========================================================");
+    console.log("  FIRST ADMIN CREATED (save this - shown once!)");
+    console.log("  username: " + user);
+    console.log("  password: " + pass);
+    console.log("  Login at /admin and change the password ASAP.");
+    console.log("  Tip: set ADMIN_PASSWORD env to use a known password.");
+    console.log("========================================================");
+  }
   return pass;
 }
 
