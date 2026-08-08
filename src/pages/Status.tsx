@@ -16,74 +16,60 @@ export default function Status() {
   useEffect(() => { load(); const t = setInterval(load, 30000); return () => clearInterval(t); }, []);
 
   const ok = health?.ok;
-
   const ds = health?.datasets || {};
-  const admin = ds.admin || {};
-  const ecz = ds.ecz || {};
+
+  const sources = [
+    ["ECZ", sync?.johnweb_ok],
+    ["Admin", sync?.admin_ok],
+    ["Schools", sync?.schools_ok],
+    ["Health", sync?.health_ok],
+    ["Universities", sync?.universities_ok],
+  ];
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold text-[#0a2540] mb-2">API status</h1>
-      <p className="text-gray-600 mb-8">Live health of ShimbaData and all its data sources.</p>
+    <div className="max-w-3xl mx-auto px-6 py-10">
+      <h1 className="text-2xl font-semibold text-gray-900">Status</h1>
 
-      <div className={`rounded-xl p-5 mb-6 border ${ok ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"}`}>
-        <div className="flex items-center gap-3">
-          <span className={`w-3 h-3 rounded-full ${ok ? "bg-green-500" : "bg-red-500"}`} />
-          <span className={`font-bold ${ok ? "text-green-800" : "text-red-800"}`}>{ok ? "All systems operational" : "Degraded"}</span>
+      <div className={`mt-4 inline-flex items-center gap-2 text-sm ${ok ? "text-emerald-700" : "text-red-600"}`}>
+        <span className={`w-2 h-2 rounded-full ${ok ? "bg-emerald-500" : "bg-red-500"}`} />
+        {ok ? "Operational" : "Degraded"}
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-sm font-semibold text-gray-900 mb-3">Datasets</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+          <Stat label="Papers" value={ds.ecz?.papers ?? "—"} />
+          <Stat label="Wards" value={ds.admin?.wards ?? "—"} />
+          <Stat label="Schools" value={ds.schools ?? "—"} />
+          <Stat label="Health" value={ds.healthFacilities ?? "—"} />
+          <Stat label="Universities" value={ds.universities ?? "—"} />
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-        <div className="bg-white border rounded-xl p-5">
-          <h3 className="font-bold text-[#0a2540] mb-2">ECZ Papers</h3>
-          <p className="text-sm text-gray-600">Subjects: <strong>{ecz.subjects ?? "—"}</strong></p>
-          <p className="text-sm text-gray-600">Papers: <strong>{ecz.papers ?? "—"}</strong></p>
-          <p className="text-sm text-gray-600">Questions: <strong>{ecz.questions ?? "—"}</strong></p>
-        </div>
-        <div className="bg-white border rounded-xl p-5">
-          <h3 className="font-bold text-[#0a2540] mb-2">Admin divisions</h3>
-          <p className="text-sm text-gray-600">Provinces: <strong>{admin.provinces ?? "—"}</strong></p>
-          <p className="text-sm text-gray-600">Districts: <strong>{admin.districts ?? "—"}</strong></p>
-          <p className="text-sm text-gray-600">Wards: <strong>{admin.wards ?? "—"}</strong></p>
-        </div>
-        <div className="bg-white border rounded-xl p-5">
-          <h3 className="font-bold text-[#0a2540] mb-2">Schools</h3>
-          <p className="text-sm text-gray-600">Facilities: <strong>{ds.schools ?? "—"}</strong></p>
-          <p className="text-xs text-gray-400 mt-1">OpenStreetMap</p>
-        </div>
-        <div className="bg-white border rounded-xl p-5">
-          <h3 className="font-bold text-[#0a2540] mb-2">Health facilities</h3>
-          <p className="text-sm text-gray-600">Facilities: <strong>{ds.healthFacilities ?? "—"}</strong></p>
-          <p className="text-xs text-gray-400 mt-1">Ministry of Health</p>
-        </div>
-        <div className="bg-white border rounded-xl p-5">
-          <h3 className="font-bold text-[#0a2540] mb-2">Universities</h3>
-          <p className="text-sm text-gray-600">Institutions: <strong>{ds.universities ?? "—"}</strong></p>
-          <p className="text-xs text-gray-400 mt-1">uniRank / HEA</p>
+      <div className="mt-8">
+        <h2 className="text-sm font-semibold text-gray-900 mb-3">Sources</h2>
+        <div className="space-y-2">
+          {sources.map(([name, active]) => (
+            <div key={name} className="flex items-center justify-between text-sm">
+              <span className="text-gray-700">{name}</span>
+              <span className={`text-xs ${active ? "text-emerald-600" : "text-red-600"}`}>{active ? "synced" : "failed"}</span>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div className="bg-white border rounded-xl p-5">
-        <h3 className="font-bold text-[#0a2540] mb-2">Last sync</h3>
-        <p className="text-sm text-gray-600">At: <span className="font-mono">{sync?.at || "—"}</span></p>
-        <p className="text-sm text-gray-600">Duration: <strong>{sync?.ms ? sync.ms + "ms" : "—"}</strong></p>
-        <p className="text-sm text-gray-600">ECZ: <span className={sync?.johnweb_ok ? "text-green-600" : "text-red-600"}>{sync?.johnweb_ok ? "ok" : "failed"}</span></p>
-        <p className="text-sm text-gray-600">Admin: <span className={sync?.admin_ok ? "text-green-600" : "text-red-600"}>{sync?.admin_ok ? "ok" : "failed"}</span></p>
-        <p className="text-sm text-gray-600">Schools: <span className={sync?.schools_ok ? "text-green-600" : "text-red-600"}>{sync?.schools_ok ? "ok" : "failed"}</span></p>
-        <p className="text-sm text-gray-600">Health: <span className={sync?.health_ok ? "text-green-600" : "text-red-600"}>{sync?.health_ok ? "ok" : "failed"}</span></p>
+      <div className="mt-8 text-sm text-gray-500">
+        Last sync: {sync?.at ? new Date(sync.at).toLocaleString() : "—"} · {sync?.ms}ms
       </div>
+    </div>
+  );
+}
 
-      <div className="mt-8 bg-gray-50 border rounded-xl p-5">
-        <h3 className="font-bold text-[#0a2540] mb-2">Data sources</h3>
-        <ul className="text-sm text-gray-600 space-y-1">
-          <li><strong>ECZ Papers</strong> — synced from JohnWeb (our own platform)</li>
-          <li><strong>Admin divisions</strong> — openadmindata.org, CC-BY-4.0</li>
-          <li><strong>Schools</strong> — OpenStreetMap via HDX</li>
-          <li><strong>Health facilities</strong> — Zambia Ministry of Health Master Facility List</li>
-          <li><strong>Universities</strong> — uniRank / HEA Zambia</li>
-        </ul>
-        <p className="text-xs text-gray-400 mt-2">All sources refresh every 60 minutes. Sources are the truth — ShimbaData mirrors them.</p>
-      </div>
+function Stat({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div className="border border-gray-200 rounded-lg p-3">
+      <p className="text-lg font-semibold text-gray-900">{value}</p>
+      <p className="text-xs text-gray-500">{label}</p>
     </div>
   );
 }
