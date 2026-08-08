@@ -7,7 +7,7 @@ import { rateLimit, trackStats, getUsage } from "./rateLimit.js";
 import { sendCsv } from "./csv.js";
 import { seedAdminIfNeeded, loginAdmin, changePassword, listAdmins, createAdmin, requireAdmin, requireSuperAdmin, setAdminStatus, removeAdmin } from "./admin.js";
 import { runSync } from "./sync.js";
-import { createUser, loginUser, verifyAuth, requireUser, linkJohnWeb, changePassword, listUsers } from "./user-auth.js";
+import { createUser, loginUser, verifyAuth, requireUser, linkJohnWeb, changePassword as changeUserPassword, listUsers } from "./user-auth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, "..", "dist");
@@ -319,7 +319,7 @@ app.post("/api/user/link-johnweb", requireUser, (req, res) => {
 app.post("/api/user/change-password", requireUser, (req, res) => {
   const { oldPassword, newPassword } = req.body || {};
   if (!oldPassword || !newPassword) return res.status(400).json({ error: "oldPassword and newPassword required" });
-  const result = changePassword(req.user.id, oldPassword, newPassword);
+  const result = changeUserPassword(req.user.id, oldPassword, newPassword);
   if (result.error) return res.status(400).json(result);
   res.json(result);
 });
