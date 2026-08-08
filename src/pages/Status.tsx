@@ -33,7 +33,7 @@ export default function Status() {
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-3 gap-4 mb-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div className="bg-white border rounded-xl p-5">
           <h3 className="font-bold text-[#0a2540] mb-2">ECZ Papers</h3>
           <p className="text-sm text-gray-600">Subjects: <strong>{ecz.subjects ?? "—"}</strong></p>
@@ -51,15 +51,21 @@ export default function Status() {
           <p className="text-sm text-gray-600">Facilities: <strong>{ds.schools ?? "—"}</strong></p>
           <p className="text-xs text-gray-400 mt-1">from OpenStreetMap</p>
         </div>
+        <div className="bg-white border rounded-xl p-5">
+          <h3 className="font-bold text-[#0a2540] mb-2">Health facilities</h3>
+          <p className="text-sm text-gray-600">Facilities: <strong>{ds.healthFacilities ?? "—"}</strong></p>
+          <p className="text-xs text-gray-400 mt-1">Ministry of Health MFL</p>
+        </div>
       </div>
 
       <div className="bg-white border rounded-xl p-5">
         <h3 className="font-bold text-[#0a2540] mb-2">Last sync</h3>
         <p className="text-sm text-gray-600">At: <span className="font-mono">{sync?.at || "—"}</span></p>
         <p className="text-sm text-gray-600">Duration: <strong>{sync?.ms ? sync.ms + "ms" : "—"}</strong></p>
-        <p className="text-sm text-gray-600">JohnWeb: <span className={sync?.johnweb_ok ? "text-green-600" : "text-red-600"}>{sync?.johnweb_ok ? "ok" : "failed"}</span></p>
+        <p className="text-sm text-gray-600">ECZ: <span className={sync?.johnweb_ok ? "text-green-600" : "text-red-600"}>{sync?.johnweb_ok ? "ok" : "failed"}</span></p>
         <p className="text-sm text-gray-600">Admin: <span className={sync?.admin_ok ? "text-green-600" : "text-red-600"}>{sync?.admin_ok ? "ok" : "failed"}</span></p>
         <p className="text-sm text-gray-600">Schools: <span className={sync?.schools_ok ? "text-green-600" : "text-red-600"}>{sync?.schools_ok ? "ok" : "failed"}</span></p>
+        <p className="text-sm text-gray-600">Health: <span className={sync?.health_ok ? "text-green-600" : "text-red-600"}>{sync?.health_ok ? "ok" : "failed"}</span></p>
       </div>
 
       <div className="mt-8 bg-gray-50 border rounded-xl p-5">
@@ -68,6 +74,7 @@ export default function Status() {
           <li><strong>ECZ Papers</strong> — synced from JohnWeb's public API (our own platform)</li>
           <li><strong>Admin divisions</strong> — openadmindata.org, CC-BY-4.0</li>
           <li><strong>Schools</strong> — OpenStreetMap via HDX</li>
+          <li><strong>Health facilities</strong> — Zambia Ministry of Health Master Facility List</li>
         </ul>
         <p className="text-xs text-gray-400 mt-2">All sources refresh every 60 minutes. Sources are the truth — ShimbaData mirrors them.</p>
       </div>

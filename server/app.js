@@ -5,6 +5,8 @@ import { fileURLToPath } from "url";
 import { readJSON, writeJSON, initStorage } from "./storage.js";
 import { rateLimit, trackStats, getUsage } from "./rateLimit.js";
 import { sendCsv } from "./csv.js";
+import { seedAdminIfNeeded, loginAdmin, changePassword, listAdmins, createAdmin, requireAdmin } from "./admin.js";
+import { runSync } from "./sync.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, "..", "dist");
@@ -152,6 +154,33 @@ app.get("/api/sd/schools", (req, res) => {
   res.json(out);
 });
 
+app.get("/api/sd/health-facilities", (req, res) => {
+  const data = readJSON("health-facilities.json");
+  if (!data) return res.status(503).json({ error: "data not synced yet" });
+  const hasFilter = req.query.province || req.query.district || req.query.type || (req.query.lat && req.query.lon) || req.query.ownership;
+  if (!hasFilter) {
+    return res.status(400).json({
+      error: "provide at least one filter: province, district, type, ownership, or lat+lon",
+      total: data.length,
+      example: "/api/sd/health-facilities?province=Lusaka or /api/sd/health-facilities?type=Hospital&lat=-15.477&lon=29.18&radiusKm=20",
+    });
+  }
+  let out = data;
+  if (req.query.province) { const p = req.query.province.toLowerCase(); out = out.filter((f) => f.province.toLowerCase().includes(p)); }
+  if (req.query.district) { const d = req.query.district.toLowerCase(); out = out.filter((f) => f.district.toLowerCase().includes(d)); }
+  if (req.query.type) { const t = req.query.type.toLowerCase(); out = out.filter((f) => f.type.toLowerCase().includes(t)); }
+  if (req.query.ownership) { const o = req.query.ownership.toLowerCase(); out = out.filter((f) => f.ownership.toLowerCase().includes(o)); }
+  if (req.query.lat && req.query.lon && req.query.radiusKm) {
+    const lat = parseFloat(req.query.lat), lon = parseFloat(req.query.lon), r = parseFloat(req.query.radiusKm);
+    out = out
+      .filter((f) => haversineKm(lat, lon, f.lat, f.lon) <= r)
+      .map((f) => ({ ...f, distanceKm: Math.round(haversineKm(lat, lon, f.lat, f.lon) * 100) / 100 }));
+  }
+  if (req.query.limit) out = out.slice(0, parseInt(req.query.limit));
+  if (sendCsv(req, res, out.map((f) => ({ name: f.name, type: f.type, ownership: f.ownership, location: f.location, province: f.province, district: f.district, lat: f.lat, lon: f.lon, status: f.status, distanceKm: f.distanceKm ?? null })))) return;
+  res.json(out);
+});
+
 app.get("/api/sd/questions", (req, res) => {
   const details = readJSON("paper-details.json") || {};
   let qs = [];
@@ -198,21 +227,36 @@ app.get("/api/sd/stats/aggregate", (req, res) => {
 });
 
 app.post("/api/sd/keys", (req, res) => {
-  const { name, email } = req.body || {};
-  if (!name) return res.status(400).json({ error: "name required" });
+  const { name, email, company, project, useCase } = req.body || {};
+  if (!name || !project) {
+    return res.status(400).json({ error: "name and project required - tell us who you are and what you are building" });
+  }
   const keys = readJSON("keys.json") || [];
   const key = "sd_" + Math.random().toString(36).slice(2, 12) + Date.now().toString(36).slice(-4);
-  const entry = { key, name, email: email || "", active: true, createdAt: new Date().toISOString(), requests: 0 };
+  const entry = {
+    key, name, email: email || "", company: company || "", project, useCase: useCase || "",
+    active: false, status: "pending", createdAt: new Date().toISOString(), requests: 0,
+  };
   keys.push(entry);
   writeJSON("keys.json", keys);
-  res.status(201).json({ key, name, message: "save this key — it won't be shown again" });
+  res.status(201).json({
+    key, project, status: "pending",
+    message: "submission received. Save this key - an admin will review it. Your key activates once approved.",
+  });
+});
+
+app.get("/api/sd/keys/status/:key", (req, res) => {
+  const keys = readJSON("keys.json") || [];
+  const found = keys.find((k) => k.key === req.params.key);
+  if (!found) return res.status(404).json({ error: "key not found" });
+  res.json({ key: found.key.slice(0, 8) + "...", project: found.project, status: found.status, createdAt: found.createdAt });
 });
 
 app.get("/api/sd/usage", (req, res) => {
   const k = requireKey(req, res);
   if (!k) return;
   const all = getUsage();
-  res.json({ key: k.key, name: k.name, requestsThisSession: all[k.key] || 0 });
+  res.json({ key: k.key, name: k.name, project: k.project || "", requestsThisSession: all[k.key] || 0 });
 });
 
 app.get("/api/sd/keys", (req, res) => {
@@ -220,10 +264,88 @@ app.get("/api/sd/keys", (req, res) => {
   res.json(keys.map(({ key, name, active, createdAt }) => ({ key: key.slice(0, 8) + "…", name, active, createdAt })));
 });
 
+/* ── admin routes ─────────────────────────────────── */
+app.post("/api/admin/login", (req, res) => {
+  const { username, password } = req.body || {};
+  const result = loginAdmin(username, password);
+  if (!result) return res.status(401).json({ error: "invalid credentials" });
+  res.json(result);
+});
+
+app.get("/api/admin/me", requireAdmin, (req, res) => {
+  res.json({ username: req.admin.username, role: req.admin.role });
+});
+
+app.post("/api/admin/change-password", requireAdmin, (req, res) => {
+  const { oldPassword, newPassword } = req.body || {};
+  if (!oldPassword || !newPassword) return res.status(400).json({ error: "oldPassword and newPassword required" });
+  if (newPassword.length < 6) return res.status(400).json({ error: "new password must be at least 6 characters" });
+  const ok = changePassword(req.admin.username, oldPassword, newPassword);
+  res.json(ok ? { ok: true } : { ok: false, error: "old password incorrect" });
+});
+
+app.get("/api/admin/submissions", requireAdmin, (req, res) => {
+  const keys = readJSON("keys.json") || [];
+  const pending = keys.filter((k) => k.status === "pending" || (!k.active && !k.status));
+  res.json(pending);
+});
+
+app.post("/api/admin/keys/:key/approve", requireAdmin, (req, res) => {
+  const keys = readJSON("keys.json") || [];
+  const found = keys.find((k) => k.key === req.params.key);
+  if (!found) return res.status(404).json({ error: "key not found" });
+  found.active = true;
+  found.status = "approved";
+  found.approvedAt = new Date().toISOString();
+  found.approvedBy = req.admin.username;
+  writeJSON("keys.json", keys);
+  res.json({ ok: true, key: found.key.slice(0, 8) + "…", project: found.project, status: "approved" });
+});
+
+app.post("/api/admin/keys/:key/reject", requireAdmin, (req, res) => {
+  const keys = readJSON("keys.json") || [];
+  const found = keys.find((k) => k.key === req.params.key);
+  if (!found) return res.status(404).json({ error: "key not found" });
+  found.status = "rejected";
+  found.active = false;
+  found.rejectedAt = new Date().toISOString();
+  found.rejectedBy = req.admin.username;
+  writeJSON("keys.json", keys);
+  res.json({ ok: true, key: found.key.slice(0, 8) + "…", project: found.project, status: "rejected" });
+});
+
+app.get("/api/admin/keys", requireAdmin, (req, res) => {
+  const keys = readJSON("keys.json") || [];
+  res.json(keys.map((k) => ({
+    key: k.key.slice(0, 8) + "…",
+    name: k.name, project: k.project, company: k.company, email: k.email,
+    status: k.status || (k.active ? "approved" : "pending"),
+    active: k.active, createdAt: k.createdAt, useCase: k.useCase,
+  })));
+});
+
+app.get("/api/admin/stats", requireAdmin, (req, res) => {
+  const stats = readJSON("api-stats.json") || {};
+  const keys = readJSON("keys.json") || [];
+  const syncState = readJSON("sync-state.json") || {};
+  res.json({
+    api: stats,
+    keys: { total: keys.length, pending: keys.filter((k) => k.status === "pending").length, approved: keys.filter((k) => k.status === "approved" || (k.active && !k.status)).length, rejected: keys.filter((k) => k.status === "rejected").length },
+    sync: syncState,
+    admins: listAdmins(),
+  });
+});
+
+app.post("/api/admin/sync", requireAdmin, async (req, res) => {
+  res.json({ ok: true, message: "sync started" });
+  runSync().catch((e) => console.error("[admin sync] error:", e.message));
+});
+
 app.get("/api/sd/_health", (req, res) => {
   const stats = readJSON("stats.json");
   const provinces = readJSON("provinces.json");
   const schools = readJSON("schools.json");
+  const health = readJSON("health-facilities.json");
   res.json({
     ok: !!stats && !!provinces,
     time: new Date().toISOString(),
@@ -232,6 +354,7 @@ app.get("/api/sd/_health", (req, res) => {
       ecz: stats ? { subjects: stats.subjects, papers: stats.papers, questions: stats.questions } : null,
       admin: provinces ? { provinces: provinces.length, districts: (readJSON("districts.json") || []).length, constituencies: (readJSON("constituencies.json") || []).length, wards: (readJSON("wards.json") || []).length } : null,
       schools: schools ? schools.length : null,
+      healthFacilities: health ? health.length : null,
     },
   });
 });

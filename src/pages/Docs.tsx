@@ -9,11 +9,12 @@ const endpoints = [
   { method: "GET", path: "/papers/:id", desc: "Full paper + questions + model answers", params: [] },
   { method: "GET", path: "/questions", desc: "Question feed (across all papers)", params: ["subjectId", "grade", "limit"] },
   { method: "GET", path: "/search?q=", desc: "Search ECZ questions by keyword", params: ["q (required)"] },
-  { method: "GET", path: "/provinces", desc: "Zambia's 10 provinces + coordinates", params: [] },
-  { method: "GET", path: "/districts", desc: "Zambia's 116 districts", params: ["provinceId"] },
-  { method: "GET", path: "/constituencies", desc: "Zambia's 156 constituencies", params: ["districtId"] },
-  { method: "GET", path: "/wards", desc: "Zambia's ~1,853 wards", params: ["districtId"] },
+  { method: "GET", path: "/provinces", desc: "Zambia provinces + coordinates", params: [] },
+  { method: "GET", path: "/districts", desc: "Zambia districts", params: ["provinceId"] },
+  { method: "GET", path: "/constituencies", desc: "Zambia constituencies", params: ["districtId"] },
+  { method: "GET", path: "/wards", desc: "Zambia wards", params: ["districtId", "provinceId", "constituencyId"] },
   { method: "GET", path: "/schools", desc: "Zambian schools with lat/lon", params: ["q", "lat", "lon", "radiusKm", "limit"] },
+  { method: "GET", path: "/health-facilities", desc: "Clinics, hospitals & health posts (MOH Master Facility List)", params: ["province", "district", "type", "ownership", "lat", "lon", "radiusKm", "limit"] },
   { method: "GET", path: "/sync-state", desc: "Last data sync status (all sources)", params: [] },
 ];
 
@@ -22,7 +23,7 @@ export default function Docs() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold text-[#0a2540] mb-2">API Reference</h1>
-      <p className="text-gray-600 mb-8">Base URL: <code className="bg-gray-100 px-2 py-0.5 rounded text-sm">{API}</code>. All responses are JSON by default — append <code className="bg-gray-100 px-1 rounded">?format=csv</code> for spreadsheets.</p>
+      <p className="text-gray-600 mb-8">Base URL: <code className="bg-gray-100 px-2 py-0.5 rounded text-sm">{API}</code>. All responses are JSON by default - append <code className="bg-gray-100 px-1 rounded">?format=csv</code> for spreadsheets.</p>
 
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8 text-sm text-blue-900">
         <strong>Free tier:</strong> 30 requests/min, no key. <strong>Pro key:</strong> send <code>X-SD-Key: your-key</code> header → 3,000/min. Check <code>X-RateLimit-Remaining</code> in every response.
@@ -47,27 +48,35 @@ export default function Docs() {
         ))}
       </div>
 
-      <div className="mt-10 grid sm:grid-cols-2 gap-6">
-        <div className="bg-white border rounded-xl p-5">
-          <h3 className="font-bold text-[#0a2540] mb-2">Key management</h3>
-          <p className="text-sm text-gray-600 mb-3">Generate a key (free while in beta):</p>
-          <pre className="bg-gray-900 text-green-300 text-xs p-3 rounded-lg overflow-x-auto">{`POST /api/sd/keys
-{ "name": "My app" }
+      <div className="mt-10">
+        <h3 className="font-bold text-[#0a2540] mb-3">Tiers</h3>
+        <div className="grid sm:grid-cols-2 gap-4 mb-6">
+          <div className="bg-white border rounded-lg p-4"><strong>Free</strong> - 30 req/min, no key, no signup.</div>
+          <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-4"><strong>Pro</strong> - 3,000 req/min, free. Submit your project to get a key.</div>
+        </div>
+      </div>
 
-→ { "key": "sd_abc123..." }`}</pre>
+      <div className="mt-6 grid sm:grid-cols-2 gap-6">
+        <div className="bg-white border rounded-xl p-5">
+          <h3 className="font-bold text-[#0a2540] mb-2">Get a Pro key</h3>
+          <p className="text-sm text-gray-600 mb-3">Submit your project (free):</p>
+          <pre className="bg-gray-900 text-green-300 text-xs p-3 rounded-lg overflow-x-auto">{`POST /api/sd/keys
+{ "name": "Jane", "project": "StudyApp" }
+
+-> { "key": "sd_abc123..." }`}</pre>
         </div>
         <div className="bg-white border rounded-xl p-5">
           <h3 className="font-bold text-[#0a2540] mb-2">Usage</h3>
-          <p className="text-sm text-gray-600 mb-3">Check your key's session usage:</p>
+          <p className="text-sm text-gray-600 mb-3">Check your keys session usage:</p>
           <pre className="bg-gray-900 text-green-300 text-xs p-3 rounded-lg overflow-x-auto">{`GET /api/sd/usage
 Headers: X-SD-Key: your-key
 
-→ { "key": "...", "requestsThisSession": 42 }`}</pre>
+-> { "key": "...", "requestsThisSession": 42 }`}</pre>
         </div>
       </div>
 
       <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-sm text-yellow-900">
-        <strong>Rate limits</strong> — 429 responses include an <code>upgrade</code> field pointing you to get a key. Respect the <code>X-RateLimit-Reset</code> header.
+        <strong>Rate limits</strong> - 429 responses include an <code>upgrade</code> field pointing you to get a key. Respect the <code>X-RateLimit-Reset</code> header.
       </div>
     </div>
   );

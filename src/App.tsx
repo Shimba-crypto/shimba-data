@@ -4,11 +4,13 @@ import Landing from "./pages/Landing";
 import Docs from "./pages/Docs";
 import Usage from "./pages/Usage";
 import Status from "./pages/Status";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
   return (
     <Routes>
+      <Route path="/admin" element={<Admin />} />
       <Route element={<Layout />}>
         <Route path="/" element={<Landing />} />
         <Route path="/docs" element={<Docs />} />

@@ -3,6 +3,7 @@ import path from "path";
 import app from "./app.js";
 import { initStorage } from "./storage.js";
 import { runSync } from "./sync.js";
+import { seedAdminIfNeeded } from "./admin.js";
 
 const envPath = path.join(process.cwd(), ".env.local");
 if (fs.existsSync(envPath)) {
@@ -22,9 +23,7 @@ const SYNC_INTERVAL = parseInt(process.env.SYNC_INTERVAL_MS || "3600000");
 
 async function boot() {
   initStorage();
-  // Preload any cached data, then start accepting requests immediately.
-  // The initial sync runs in the background so Render's health check
-  // isn't blocked by the ~10s paper-details fetch.
+  seedAdminIfNeeded();
   app.listen(PORT, () => console.log(`ShimbaData running on port ${PORT} (sync every ${SYNC_INTERVAL / 60000}min)`));
   try {
     await runSync();
