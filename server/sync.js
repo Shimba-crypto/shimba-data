@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import { writeJSON, readJSON } from "./storage.js";
 import AdmZip from "adm-zip";
 
@@ -7,6 +9,7 @@ const SCHOOLS_URL =
   "https://production-raw-data-api.s3.amazonaws.com/ISO3/ZMB/education_facilities/hotosm_zmb_education_facilities_osm_geojson.zip";
 const HEALTH_CSV_URL =
   "https://raw.githubusercontent.com/MOH-Zambia/MFL/master/geography/data/facility_list.csv";
+const UNIVERSITIES_SEED = path.join(process.cwd(), "seeds", "universities.json");
 
 async function fetchJson(url) {
   try {
@@ -160,9 +163,21 @@ export async function syncHealthFacilities() {
   return { facilities: facilities.length };
 }
 
+export async function syncUniversities() {
+  try {
+    if (!fs.existsSync(UNIVERSITIES_SEED)) return null;
+    const seed = JSON.parse(fs.readFileSync(UNIVERSITIES_SEED, "utf-8"));
+    writeJSON("universities.json", seed.universities || []);
+    return { universities: (seed.universities || []).length };
+  } catch (e) {
+    console.error("[sync] universities error:", e.message);
+    return null;
+  }
+}
+
 export async function runSync() {
   const t0 = Date.now();
-  console.log("[sync] pulling ECZ + admin + schools + health...");
+  console.log("[sync] pulling ECZ + admin + schools + health + universities...");
 
   const result = { ok: true, at: new Date().toISOString() };
   try {
@@ -189,12 +204,18 @@ export async function runSync() {
     else result.health_ok = true;
   } catch (e) { result.health_ok = false; console.error("[sync] health error:", e.message); }
 
+  try {
+    result.universities = await syncUniversities();
+    if (!result.universities) { result.universities_ok = false; console.error("[sync] universities failed"); }
+    else result.universities_ok = true;
+  } catch (e) { result.universities_ok = false; console.error("[sync] universities error:", e.message); }
+
   result.ms = Date.now() - t0;
   result.ok = !!(result.johnweb_ok && result.admin_ok);
   writeJSON("sync-state.json", result);
 
   console.log(
-    `[sync] done in ${result.ms}ms — ecz:${result.johnweb_ok ? "ok" : "FAIL"} admin:${result.admin ? result.admin.provinces + "P/" + (result.admin.wards || 0) + "W" : "FAIL"} schools:${result.schools ? result.schools.schools : "FAIL"} health:${result.health ? result.health.facilities : "FAIL"}`
+    `[sync] done in ${result.ms}ms — ecz:${result.johnweb_ok ? "ok" : "FAIL"} admin:${result.admin ? result.admin.provinces + "P/" + (result.admin.wards || 0) + "W" : "FAIL"} schools:${result.schools ? result.schools.schools : "FAIL"} health:${result.health ? result.health.facilities : "FAIL"} unis:${result.universities ? result.universities.universities : "FAIL"}`
   );
   return result;
 }

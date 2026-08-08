@@ -1,0 +1,371 @@
+{
+  "source": "uniRank.org / HEA Zambia",
+  "updatedAt": "2026-08-08T20:18:11.002Z",
+  "count": 52,
+  "universities": [
+    {
+      "name": "Africa Christian University",
+      "rank": 10,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Africa Research University",
+      "rank": 27,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Ambassador International University",
+      "rank": null,
+      "town": "Chongwe",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Bethel University, Zambia",
+      "rank": 35,
+      "town": "Mongu",
+      "province": "Western",
+      "type": "private"
+    },
+    {
+      "name": "Blessing University of Excellence",
+      "rank": 30,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Brook Besor University",
+      "rank": 45,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Cavendish University Zambia",
+      "rank": 9,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Chalimbana University",
+      "rank": 12,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "public"
+    },
+    {
+      "name": "Chreso University",
+      "rank": 17,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "City University of Science and Technology",
+      "rank": null,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Copperstone University",
+      "rank": 32,
+      "town": "Kitwe",
+      "province": "Copperbelt",
+      "type": "private"
+    },
+    {
+      "name": "DMI-St. Eugene University",
+      "rank": 25,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Eden University",
+      "rank": 18,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Evangelical University",
+      "rank": 33,
+      "town": "Ndola",
+      "province": "Copperbelt",
+      "type": "private"
+    },
+    {
+      "name": "Gideon Robert University",
+      "rank": 26,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Harvest University",
+      "rank": 21,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Information and Communication University",
+      "rank": 5,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Justo Mwale University",
+      "rank": 15,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Kapasa Makasa University",
+      "rank": 36,
+      "town": "Chinsali",
+      "province": "Muchinga",
+      "type": "public"
+    },
+    {
+      "name": "Kenneth Kaunda Metropolitan University",
+      "rank": null,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Kwame Nkrumah University",
+      "rank": 13,
+      "town": "Kabwe",
+      "province": "Central",
+      "type": "public"
+    },
+    {
+      "name": "Levy Mwanawasa Medical University",
+      "rank": 20,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "public"
+    },
+    {
+      "name": "Livingstone International University of Tourism Excellence and Business Management",
+      "rank": 24,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Lusaka Apex Medical University",
+      "rank": 8,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Mansfield University",
+      "rank": 39,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Mosa University",
+      "rank": 44,
+      "town": "Chibombo",
+      "province": "Central",
+      "type": "private"
+    },
+    {
+      "name": "Mukuba University",
+      "rank": 7,
+      "town": "Kitwe",
+      "province": "Copperbelt",
+      "type": "public"
+    },
+    {
+      "name": "Mulungushi University",
+      "rank": 3,
+      "town": "Kabwe",
+      "province": "Central",
+      "type": "public"
+    },
+    {
+      "name": "Northrise University",
+      "rank": 6,
+      "town": "Ndola",
+      "province": "Copperbelt",
+      "type": "private"
+    },
+    {
+      "name": "OAK University",
+      "rank": null,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Paglory University",
+      "rank": 40,
+      "town": "Kabwe",
+      "province": "Central",
+      "type": "private"
+    },
+    {
+      "name": "Rockview University",
+      "rank": 37,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Rusangu University",
+      "rank": 16,
+      "town": "Monze",
+      "province": "Southern",
+      "type": "private"
+    },
+    {
+      "name": "South Valley University",
+      "rank": 34,
+      "town": "Chikankata",
+      "province": "Southern",
+      "type": "private"
+    },
+    {
+      "name": "St. Bonaventure University",
+      "rank": 23,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Sunningdale University",
+      "rank": null,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Supershine University",
+      "rank": 38,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Texila American University Zambia",
+      "rank": 14,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "The Copperbelt University",
+      "rank": 2,
+      "town": "Kitwe",
+      "province": "Copperbelt",
+      "type": "private"
+    },
+    {
+      "name": "The United Church of Zambia University",
+      "rank": 29,
+      "town": "Kitwe",
+      "province": "Copperbelt",
+      "type": "private"
+    },
+    {
+      "name": "The University of Barotseland",
+      "rank": 31,
+      "town": "Mongu",
+      "province": "Western",
+      "type": "private"
+    },
+    {
+      "name": "The Zambia Catholic University",
+      "rank": 22,
+      "town": "Kalulushi",
+      "province": "Copperbelt",
+      "type": "private"
+    },
+    {
+      "name": "Trans-Africa Christian University",
+      "rank": 41,
+      "town": "Kitwe",
+      "province": "Copperbelt",
+      "type": "private"
+    },
+    {
+      "name": "Trinity University, Zambia",
+      "rank": 28,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "Twin Palm Leadership University",
+      "rank": null,
+      "town": "Chikankata",
+      "province": "Southern",
+      "type": "private"
+    },
+    {
+      "name": "University of Edenberg",
+      "rank": 43,
+      "town": "Kitwe",
+      "province": "Copperbelt",
+      "type": "private"
+    },
+    {
+      "name": "University of Lusaka",
+      "rank": 4,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "University of Zambia",
+      "rank": 1,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "public"
+    },
+    {
+      "name": "Victoria Falls University of Technology",
+      "rank": 42,
+      "town": "Livingstone",
+      "province": "Southern",
+      "type": "private"
+    },
+    {
+      "name": "Zambian Christian University",
+      "rank": 19,
+      "town": "Choma",
+      "province": "Southern",
+      "type": "private"
+    },
+    {
+      "name": "Zambian Royal Medical University",
+      "rank": 46,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    },
+    {
+      "name": "ZCAS University",
+      "rank": 11,
+      "town": "Lusaka",
+      "province": "Lusaka",
+      "type": "private"
+    }
+  ]
+}

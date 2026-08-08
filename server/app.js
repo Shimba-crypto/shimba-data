@@ -181,6 +181,18 @@ app.get("/api/sd/health-facilities", (req, res) => {
   res.json(out);
 });
 
+app.get("/api/sd/universities", (req, res) => {
+  const data = readJSON("universities.json");
+  if (!data) return res.status(503).json({ error: "data not synced yet" });
+  let out = data;
+  if (req.query.type) out = out.filter((u) => u.type === req.query.type);
+  if (req.query.province) { const p = req.query.province.toLowerCase(); out = out.filter((u) => (u.province || "").toLowerCase().includes(p)); }
+  if (req.query.town) { const t = req.query.town.toLowerCase(); out = out.filter((u) => (u.town || "").toLowerCase().includes(t)); }
+  if (req.query.q) { const q = req.query.q.toLowerCase(); out = out.filter((u) => u.name.toLowerCase().includes(q)); }
+  if (req.query.limit) out = out.slice(0, parseInt(req.query.limit));
+  res.json({ count: out.length, source: "uniRank.org / HEA Zambia", results: out });
+});
+
 app.get("/api/sd/questions", (req, res) => {
   const details = readJSON("paper-details.json") || {};
   let qs = [];
@@ -382,6 +394,7 @@ app.get("/api/sd/_health", (req, res) => {
   const provinces = readJSON("provinces.json");
   const schools = readJSON("schools.json");
   const health = readJSON("health-facilities.json");
+  const unis = readJSON("universities.json");
   res.json({
     ok: !!stats && !!provinces,
     time: new Date().toISOString(),
@@ -391,6 +404,7 @@ app.get("/api/sd/_health", (req, res) => {
       admin: provinces ? { provinces: provinces.length, districts: (readJSON("districts.json") || []).length, constituencies: (readJSON("constituencies.json") || []).length, wards: (readJSON("wards.json") || []).length } : null,
       schools: schools ? schools.length : null,
       healthFacilities: health ? health.length : null,
+      universities: unis ? unis.length : null,
     },
   });
 });

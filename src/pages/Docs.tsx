@@ -15,6 +15,7 @@ const endpoints = [
   { method: "GET", path: "/wards", desc: "Zambia wards", params: ["districtId", "provinceId", "constituencyId"] },
   { method: "GET", path: "/schools", desc: "Zambian schools with lat/lon", params: ["q", "lat", "lon", "radiusKm", "limit"] },
   { method: "GET", path: "/health-facilities", desc: "Clinics, hospitals & health posts (MOH Master Facility List)", params: ["province", "district", "type", "ownership", "lat", "lon", "radiusKm", "limit"] },
+  { method: "GET", path: "/universities", desc: "Zambian universities & higher-ed institutions", params: ["type", "province", "town", "q", "limit"] },
   { method: "GET", path: "/sync-state", desc: "Last data sync status (all sources)", params: [] },
 ];
 

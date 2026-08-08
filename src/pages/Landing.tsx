@@ -44,8 +44,8 @@ export default function Landing() {
             Zambia's data,<br />for <span className="text-yellow-400">developers</span>
           </h1>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
-            Free, open API — ECZ past papers, admin divisions, schools, and health facilities.
-            Build apps, bots, and study tools on top of {stats?.subjects ?? "—"} subjects, {stats?.questions ?? "—"} questions, 1,853 wards, 2,357 schools, and 2,828 health facilities.
+            Free, open API — ECZ past papers, admin divisions, schools, health facilities, and universities.
+            Build apps, bots, and study tools on top of {stats?.subjects ?? "—"} subjects, {stats?.questions ?? "—"} questions, 1,853 wards, 2,357 schools, 2,828 health facilities, and 52 universities.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link to="/docs" className="bg-yellow-400 text-[#0a2540] font-bold px-6 py-3 rounded-lg hover:bg-yellow-300 transition">Read the Docs →</Link>
@@ -55,12 +55,13 @@ export default function Landing() {
       </section>
 
       <section className="max-w-5xl mx-auto px-4 py-12">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5 text-center">
           {[
             ["📊", "ECZ Papers", `${stats?.subjects ?? "—"} subjects · ${stats?.questions ?? "—"} questions`],
             ["🗺️", "Admin divisions", "10 provinces · 116 districts · 1,853 wards"],
-            ["🏫", "Schools", "2,357 Zambian education facilities"],
-            ["🏥", "Health facilities", "2,828 clinics, hospitals & health posts"],
+            ["🏫", "Schools", "2,357 education facilities"],
+            ["🏥", "Health", "2,828 clinics & hospitals"],
+            ["🎓", "Universities", "52 higher-ed institutions"],
           ].map(([icon, t, s]) => (
             <div key={t} className="bg-white rounded-xl p-6 border shadow-sm">
               <div className="text-3xl mb-2">{icon}</div>
@@ -163,11 +164,12 @@ export default function Landing() {
 
       <section className="max-w-3xl mx-auto px-4 pb-16">
         <h2 className="text-2xl font-bold mb-4 text-white">Data sources</h2>
-        <div className="grid sm:grid-cols-2 gap-4 text-sm">
-          <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">ECZ Papers</strong><br/>from JohnWeb (our own platform)</div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+          <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">ECZ Papers</strong><br/>JohnWeb (our own platform)</div>
           <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">Admin map</strong><br/>openadmindata.org (CC-BY-4.0)</div>
           <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">Schools</strong><br/>OpenStreetMap / HDX</div>
-          <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">Health facilities</strong><br/>Ministry of Health Master Facility List</div>
+          <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">Health</strong><br/>Ministry of Health MFL</div>
+          <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">Universities</strong><br/>uniRank / HEA Zambia</div>
         </div>
       </section>
     </div>

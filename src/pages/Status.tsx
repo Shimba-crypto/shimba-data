@@ -33,7 +33,7 @@ export default function Status() {
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
         <div className="bg-white border rounded-xl p-5">
           <h3 className="font-bold text-[#0a2540] mb-2">ECZ Papers</h3>
           <p className="text-sm text-gray-600">Subjects: <strong>{ecz.subjects ?? "—"}</strong></p>
@@ -49,12 +49,17 @@ export default function Status() {
         <div className="bg-white border rounded-xl p-5">
           <h3 className="font-bold text-[#0a2540] mb-2">Schools</h3>
           <p className="text-sm text-gray-600">Facilities: <strong>{ds.schools ?? "—"}</strong></p>
-          <p className="text-xs text-gray-400 mt-1">from OpenStreetMap</p>
+          <p className="text-xs text-gray-400 mt-1">OpenStreetMap</p>
         </div>
         <div className="bg-white border rounded-xl p-5">
           <h3 className="font-bold text-[#0a2540] mb-2">Health facilities</h3>
           <p className="text-sm text-gray-600">Facilities: <strong>{ds.healthFacilities ?? "—"}</strong></p>
-          <p className="text-xs text-gray-400 mt-1">Ministry of Health MFL</p>
+          <p className="text-xs text-gray-400 mt-1">Ministry of Health</p>
+        </div>
+        <div className="bg-white border rounded-xl p-5">
+          <h3 className="font-bold text-[#0a2540] mb-2">Universities</h3>
+          <p className="text-sm text-gray-600">Institutions: <strong>{ds.universities ?? "—"}</strong></p>
+          <p className="text-xs text-gray-400 mt-1">uniRank / HEA</p>
         </div>
       </div>
 
@@ -71,10 +76,11 @@ export default function Status() {
       <div className="mt-8 bg-gray-50 border rounded-xl p-5">
         <h3 className="font-bold text-[#0a2540] mb-2">Data sources</h3>
         <ul className="text-sm text-gray-600 space-y-1">
-          <li><strong>ECZ Papers</strong> — synced from JohnWeb's public API (our own platform)</li>
+          <li><strong>ECZ Papers</strong> — synced from JohnWeb (our own platform)</li>
           <li><strong>Admin divisions</strong> — openadmindata.org, CC-BY-4.0</li>
           <li><strong>Schools</strong> — OpenStreetMap via HDX</li>
           <li><strong>Health facilities</strong> — Zambia Ministry of Health Master Facility List</li>
+          <li><strong>Universities</strong> — uniRank / HEA Zambia</li>
         </ul>
         <p className="text-xs text-gray-400 mt-2">All sources refresh every 60 minutes. Sources are the truth — ShimbaData mirrors them.</p>
       </div>
