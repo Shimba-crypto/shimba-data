@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: shimbadata
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: node server/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SYNC_INTERVAL_MS
+        value: "3600000"
+    autoDeploy: true
