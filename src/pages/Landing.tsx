@@ -34,7 +34,7 @@ export default function Landing() {
     <div className="max-w-3xl mx-auto px-6 py-10">
       <h1 className="text-3xl font-semibold text-gray-900 tracking-tight">ShimbaData</h1>
       <p className="text-gray-500 mt-2 leading-relaxed">
-        Free, open API for Zambia. ECZ past papers, admin divisions, schools, health facilities, and universities.
+        Free, open API for Zambia. ECZ past papers, admin divisions, schools, health facilities, universities, and laws.
       </p>
 
       <div className="flex gap-3 mt-6">
@@ -43,13 +43,14 @@ export default function Landing() {
         {!localStorage.getItem("sd-user-token") && <Link to="/signup" className="text-sm text-gray-600 px-4 py-2 rounded-md border border-gray-300 hover:border-gray-400">Sign up free</Link>}
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-10">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mt-10">
         {[
-          ["Papers", `${stats?.subjects ?? "—"} subjects`],
+          ["Papers", `${stats?.papers ?? (stats?.subjects ? "318+" : "—")}`],
           ["Wards", "1,853"],
           ["Schools", "2,357"],
           ["Health", "2,548"],
           ["Universities", "52"],
+          ["Laws", "73"],
         ].map(([t, s]) => (
           <div key={t} className="border border-gray-200 rounded-lg p-3">
             <p className="text-lg font-semibold text-gray-900">{s}</p>
@@ -104,6 +105,7 @@ export default function Landing() {
           <p className="text-gray-300">GET /api/sd/stats</p>
           <p className="text-gray-300">GET /api/sd/papers?grade=7</p>
           <p className="text-gray-300">GET /api/sd/universities?type=public</p>
+          <p className="text-gray-300">GET /api/sd/laws?category=Commerce</p>
           <p className="text-gray-300">GET /api/sd/health-facilities?province=Lusaka</p>
         </div>
         <Link to="/docs" className="text-sm text-gray-500 hover:text-gray-900 mt-2 inline-block">Full reference →</Link>

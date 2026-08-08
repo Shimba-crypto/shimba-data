@@ -24,6 +24,7 @@ export default function Status() {
     ["Schools", sync?.schools_ok],
     ["Health", sync?.health_ok],
     ["Universities", sync?.universities_ok],
+    ["Laws", sync?.laws_ok],
   ];
 
   return (
@@ -37,12 +38,13 @@ export default function Status() {
 
       <div className="mt-8">
         <h2 className="text-sm font-semibold text-gray-900 mb-3">Datasets</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           <Stat label="Papers" value={ds.ecz?.papers ?? "—"} />
           <Stat label="Wards" value={ds.admin?.wards ?? "—"} />
           <Stat label="Schools" value={ds.schools ?? "—"} />
           <Stat label="Health" value={ds.healthFacilities ?? "—"} />
           <Stat label="Universities" value={ds.universities ?? "—"} />
+          <Stat label="Laws" value={ds.laws ?? "—"} />
         </div>
       </div>
 

@@ -194,6 +194,17 @@ app.get("/api/sd/universities", (req, res) => {
   res.json({ count: out.length, source: "uniRank.org / HEA Zambia", results: out });
 });
 
+app.get("/api/sd/laws", (req, res) => {
+  const data = readJSON("laws.json");
+  if (!data) return res.status(503).json({ error: "data not synced yet" });
+  let out = data;
+  if (req.query.category) { const c = req.query.category.toLowerCase(); out = out.filter((l) => (l.category || "").toLowerCase() === c); }
+  if (req.query.year) out = out.filter((l) => String(l.year) === req.query.year);
+  if (req.query.q) { const q = req.query.q.toLowerCase(); out = out.filter((l) => (l.title || "").toLowerCase().includes(q)); }
+  if (req.query.limit) out = out.slice(0, parseInt(req.query.limit));
+  res.json({ count: out.length, source: "ZambiaLII / National Assembly", results: out });
+});
+
 app.get("/api/sd/questions", (req, res) => {
   const details = readJSON("paper-details.json") || {};
   let qs = [];
@@ -453,6 +464,7 @@ app.get("/api/sd/_health", (req, res) => {
   const schools = readJSON("schools.json");
   const health = readJSON("health-facilities.json");
   const unis = readJSON("universities.json");
+  const laws = readJSON("laws.json");
   res.json({
     ok: !!stats && !!provinces,
     time: new Date().toISOString(),
@@ -463,6 +475,7 @@ app.get("/api/sd/_health", (req, res) => {
       schools: schools ? schools.length : null,
       healthFacilities: health ? health.length : null,
       universities: unis ? unis.length : null,
+      laws: laws ? laws.length : null,
     },
   });
 });

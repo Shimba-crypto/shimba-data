@@ -16,6 +16,7 @@ const endpoints = [
   { method: "GET", path: "/schools", desc: "Schools (lat/lon)", params: ["q", "lat", "lon", "radiusKm"] },
   { method: "GET", path: "/health-facilities", desc: "Health facilities", params: ["province", "type", "lat", "lon"] },
   { method: "GET", path: "/universities", desc: "Universities", params: ["type", "province", "town", "q"] },
+  { method: "GET", path: "/laws", desc: "Zambian Acts of Parliament", params: ["category", "year", "q"] },
   { method: "GET", path: "/sync-state", desc: "Sync status", params: [] },
 ];
 
