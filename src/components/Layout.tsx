@@ -1,16 +1,9 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-export default function Layout() {
+export default function Layout({ token, user, logout }: { token?: string; user?: any; logout?: () => void }) {
   const loc = useLocation();
   const nav = (to: string, label: string) => (
-    <Link
-      to={to}
-      className={`block px-4 py-2 rounded-md text-[13px] transition ${
-        loc.pathname === to
-          ? "bg-gray-900 text-white font-medium"
-          : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
-      }`}
-    >
+    <Link to={to} className={`block px-4 py-2 rounded-md text-[13px] transition ${loc.pathname === to ? "bg-gray-900 text-white font-medium" : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"}`}>
       {label}
     </Link>
   );
@@ -21,16 +14,24 @@ export default function Layout() {
           <Link to="/" className="text-base font-semibold text-gray-900 tracking-tight">
             Shimba<span className="text-emerald-600">Data</span>
           </Link>
-          <p className="text-[11px] text-gray-400 mt-0.5">Zambia's data, for developers</p>
+          <p className="text-[11px] text-gray-400 mt-0.5">Zambia data, for developers</p>
         </div>
         <nav className="flex-1 px-3 py-2 space-y-0.5">
           {nav("/", "Home")}
           {nav("/docs", "Docs")}
           {nav("/usage", "Usage")}
           {nav("/status", "Status")}
+          {token && nav("/dashboard", "Dashboard")}
         </nav>
-        <div className="px-5 py-4 text-[11px] text-gray-400 leading-relaxed border-t border-gray-200">
-          Powered by <a className="text-gray-600 hover:text-gray-900" href="https://johnweb-qncu.onrender.com">JohnWeb</a>
+        <div className="px-5 py-4 border-t border-gray-200">
+          {token ? (
+            <div>
+              <p className="text-xs text-gray-700 truncate">{user?.email || "..."}</p>
+              <button onClick={logout} className="text-[11px] text-gray-500 hover:text-gray-900 mt-1">Logout</button>
+            </div>
+          ) : (
+            <Link to="/login" className="text-xs text-gray-700 hover:text-gray-900">Login / Sign up</Link>
+          )}
         </div>
       </aside>
       <main className="flex-1 min-w-0">

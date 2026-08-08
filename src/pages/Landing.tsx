@@ -40,6 +40,7 @@ export default function Landing() {
       <div className="flex gap-3 mt-6">
         <Link to="/docs" className="text-sm bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-700">Read the Docs</Link>
         <a href="#keys" className="text-sm text-gray-600 px-4 py-2 rounded-md border border-gray-300 hover:border-gray-400">Get a Pro key</a>
+        {!localStorage.getItem("sd-user-token") && <Link to="/signup" className="text-sm text-gray-600 px-4 py-2 rounded-md border border-gray-300 hover:border-gray-400">Sign up free</Link>}
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mt-10">

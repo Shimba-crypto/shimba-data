@@ -1,0 +1,1571 @@
+{
+  "scrapedAt": "2026-08-08T21:10:17.269Z",
+  "paperCount": 174,
+  "subjectCount": 44,
+  "subjects": [
+    "Additional Mathematics",
+    "Agricultural Science",
+    "Art and Design",
+    "Biology",
+    "Business Studies",
+    "Chemistry",
+    "Chinese",
+    "Chitonga",
+    "Cinyanja",
+    "Civic Education",
+    "Civics",
+    "Commerce",
+    "Computer Studies",
+    "Creative and Technology Studies",
+    "Design and Technology",
+    "English",
+    "English Language",
+    "Fashion and Fabrics",
+    "French",
+    "Geography",
+    "Geometrical and Mechanical Drawing",
+    "History",
+    "Home Economics",
+    "ICibemba",
+    "Integrated Science",
+    "Kiikaonde",
+    "Literature",
+    "Lunda",
+    "Luvale",
+    "Mathematics",
+    "Metal Work",
+    "Musical Arts Education",
+    "Office Practice",
+    "Physical Education",
+    "Physics",
+    "Principles of Accounts",
+    "Religious Education",
+    "Religious Education (2044)",
+    "Religious Education (2046)",
+    "Science",
+    "Silozi",
+    "Social Studies",
+    "Special",
+    "Woodwork"
+  ],
+  "papers": [
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2019,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2019 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2019,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2019 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2018,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2018 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2017,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2017 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2017,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2017 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2016,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2016 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2016,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2016 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2015,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2015 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2015,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2015 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2014,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2014 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2014,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2014 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2013,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2013 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2013,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2013 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2012,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2012 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2012,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2012 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2011,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2011 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2011,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2011 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2010,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2010 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2010,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2010 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2009,
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics 2009 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Mathematics",
+      "year": 2009,
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics 2009 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2023,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2023 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2022,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2022 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2022,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2022 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2021,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2021 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2021,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2021 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2020,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2020 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2017,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2017 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2017,
+      "paperNum": 3,
+      "title": "G12 ECZ Science 2017 Paper 3",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2016,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2016 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2016,
+      "paperNum": 3,
+      "title": "G12 ECZ Science 2016 Paper 3",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2015,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2015 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2014,
+      "paperNum": 3,
+      "title": "G12 ECZ Science 2014 Paper 3",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2013,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2013 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2013,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2013 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2013,
+      "paperNum": 3,
+      "title": "G12 ECZ Science 2013 Paper 3",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2012,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2012 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2012,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2012 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2012,
+      "paperNum": 3,
+      "title": "G12 ECZ Science 2012 Paper 3",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2011,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2011 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2011,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2011 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2011,
+      "paperNum": 3,
+      "title": "G12 ECZ Science 2011 Paper 3",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2010,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2010 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2010,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2010 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2010,
+      "paperNum": 3,
+      "title": "G12 ECZ Science 2010 Paper 3",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2009,
+      "paperNum": 1,
+      "title": "G12 ECZ Science 2009 Paper 1",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2009,
+      "paperNum": 2,
+      "title": "G12 ECZ Science 2009 Paper 2",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 12,
+      "subjectName": "Science",
+      "year": 2009,
+      "paperNum": 3,
+      "title": "G12 ECZ Science 2009 Paper 3",
+      "source": "eczstudytool.com"
+    },
+    {
+      "grade": 7,
+      "subjectSlug": "creative-and-technology-studies",
+      "subjectName": "Creative and Technology Studies",
+      "paperNum": 0,
+      "title": "G7 ECZ Creative and Technology Studies",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-7/creative-and-technology-studies"
+    },
+    {
+      "grade": 7,
+      "subjectSlug": "english-language",
+      "subjectName": "English Language",
+      "paperNum": 0,
+      "title": "G7 ECZ English Language",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-7/english-language"
+    },
+    {
+      "grade": 7,
+      "subjectSlug": "integrated-science",
+      "subjectName": "Integrated Science",
+      "paperNum": 0,
+      "title": "G7 ECZ Integrated Science",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-7/integrated-science"
+    },
+    {
+      "grade": 7,
+      "subjectSlug": "mathematics",
+      "subjectName": "Mathematics",
+      "paperNum": 0,
+      "title": "G7 ECZ Mathematics",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-7/mathematics"
+    },
+    {
+      "grade": 7,
+      "subjectSlug": "social-studies",
+      "subjectName": "Social Studies",
+      "paperNum": 0,
+      "title": "G7 ECZ Social Studies",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-7/social-studies"
+    },
+    {
+      "grade": 7,
+      "subjectSlug": "special",
+      "subjectName": "Special",
+      "paperNum": 1,
+      "title": "G7 ECZ Special Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-7/special-paper-1"
+    },
+    {
+      "grade": 7,
+      "subjectSlug": "special",
+      "subjectName": "Special",
+      "paperNum": 2,
+      "title": "G7 ECZ Special Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-7/special-paper-2"
+    },
+    {
+      "grade": 7,
+      "subjectSlug": "cinyanja",
+      "subjectName": "Cinyanja",
+      "paperNum": 0,
+      "title": "G7 ECZ Cinyanja",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-7/cinyanja"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "art-and-design",
+      "subjectName": "Art and Design",
+      "paperNum": 2,
+      "title": "G9 ECZ Art and Design Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/art-and-design-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "art-and-design",
+      "subjectName": "Art and Design",
+      "paperNum": 3,
+      "title": "G9 ECZ Art and Design Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/art-and-design-paper-3"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "business-studies",
+      "subjectName": "Business Studies",
+      "paperNum": 0,
+      "title": "G9 ECZ Business Studies",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/business-studies"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "chitonga",
+      "subjectName": "Chitonga",
+      "paperNum": 1,
+      "title": "G9 ECZ Chitonga Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/chitonga-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "chitonga",
+      "subjectName": "Chitonga",
+      "paperNum": 2,
+      "title": "G9 ECZ Chitonga Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/chitonga-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "cinyanja",
+      "subjectName": "Cinyanja",
+      "paperNum": 1,
+      "title": "G9 ECZ Cinyanja Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/cinyanja-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "cinyanja",
+      "subjectName": "Cinyanja",
+      "paperNum": 2,
+      "title": "G9 ECZ Cinyanja Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/cinyanja-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "civics",
+      "subjectName": "Civics",
+      "paperNum": 0,
+      "title": "G9 ECZ Civics",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/civics"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "computer-studies",
+      "subjectName": "Computer Studies",
+      "paperNum": 1,
+      "title": "G9 ECZ Computer Studies Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/computer-studies-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "computer-studies",
+      "subjectName": "Computer Studies",
+      "paperNum": 2,
+      "title": "G9 ECZ Computer Studies Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/computer-studies-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "design-and-technology",
+      "subjectName": "Design and Technology",
+      "paperNum": 1,
+      "title": "G9 ECZ Design and Technology Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/design-and-technology-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "design-and-technology",
+      "subjectName": "Design and Technology",
+      "paperNum": 2,
+      "title": "G9 ECZ Design and Technology Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/design-and-technology-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "design-and-technology",
+      "subjectName": "Design and Technology",
+      "paperNum": 3,
+      "title": "G9 ECZ Design and Technology Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/design-and-technology-paper-3"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "english",
+      "subjectName": "English",
+      "paperNum": 1,
+      "title": "G9 ECZ English Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/english-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "english",
+      "subjectName": "English",
+      "paperNum": 2,
+      "title": "G9 ECZ English Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/english-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "french",
+      "subjectName": "French",
+      "paperNum": 1,
+      "title": "G9 ECZ French Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/french-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "french",
+      "subjectName": "French",
+      "paperNum": 2,
+      "title": "G9 ECZ French Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/french-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "geography",
+      "subjectName": "Geography",
+      "paperNum": 1,
+      "title": "G9 ECZ Geography Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/geography-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "geography",
+      "subjectName": "Geography",
+      "paperNum": 2,
+      "title": "G9 ECZ Geography Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/geography-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "history",
+      "subjectName": "History",
+      "paperNum": 1,
+      "title": "G9 ECZ History Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/history-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "home-economics",
+      "subjectName": "Home Economics",
+      "paperNum": 1,
+      "title": "G9 ECZ Home Economics Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/home-economics-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "home-economics",
+      "subjectName": "Home Economics",
+      "paperNum": 2,
+      "title": "G9 ECZ Home Economics Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/home-economics-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "icibemba",
+      "subjectName": "ICibemba",
+      "paperNum": 1,
+      "title": "G9 ECZ ICibemba Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/icibemba-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "icibemba",
+      "subjectName": "ICibemba",
+      "paperNum": 2,
+      "title": "G9 ECZ ICibemba Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/icibemba-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "kiikaonde",
+      "subjectName": "Kiikaonde",
+      "paperNum": 1,
+      "title": "G9 ECZ Kiikaonde Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/kiikaonde-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "kiikaonde",
+      "subjectName": "Kiikaonde",
+      "paperNum": 2,
+      "title": "G9 ECZ Kiikaonde Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/kiikaonde-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "lunda",
+      "subjectName": "Lunda",
+      "paperNum": 1,
+      "title": "G9 ECZ Lunda Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/lunda-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "lunda",
+      "subjectName": "Lunda",
+      "paperNum": 2,
+      "title": "G9 ECZ Lunda Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/lunda-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "luvale",
+      "subjectName": "Luvale",
+      "paperNum": 1,
+      "title": "G9 ECZ Luvale Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/luvale-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "luvale",
+      "subjectName": "Luvale",
+      "paperNum": 2,
+      "title": "G9 ECZ Luvale Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/luvale-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "mathematics",
+      "subjectName": "Mathematics",
+      "paperNum": 1,
+      "title": "G9 ECZ Mathematics Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/mathematics-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "mathematics",
+      "subjectName": "Mathematics",
+      "paperNum": 2,
+      "title": "G9 ECZ Mathematics Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/mathematics-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "office-practice",
+      "subjectName": "Office Practice",
+      "paperNum": 0,
+      "title": "G9 ECZ Office Practice",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/office-practice"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "physical-education",
+      "subjectName": "Physical Education",
+      "paperNum": 1,
+      "title": "G9 ECZ Physical Education Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/physical-education-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "physical-education",
+      "subjectName": "Physical Education",
+      "paperNum": 2,
+      "title": "G9 ECZ Physical Education Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/physical-education-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "religious-education",
+      "subjectName": "Religious Education",
+      "paperNum": 0,
+      "title": "G9 ECZ Religious Education",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/religious-education"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "science",
+      "subjectName": "Science",
+      "paperNum": 1,
+      "title": "G9 ECZ Science Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/science-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "science",
+      "subjectName": "Science",
+      "paperNum": 2,
+      "title": "G9 ECZ Science Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/science-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "science",
+      "subjectName": "Science",
+      "paperNum": 3,
+      "title": "G9 ECZ Science Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/science-paper-3"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "silozi",
+      "subjectName": "Silozi",
+      "paperNum": 1,
+      "title": "G9 ECZ Silozi Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/silozi-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "silozi",
+      "subjectName": "Silozi",
+      "paperNum": 2,
+      "title": "G9 ECZ Silozi Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/silozi-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "social-studies",
+      "subjectName": "Social Studies",
+      "paperNum": 1,
+      "title": "G9 ECZ Social Studies Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/social-studies-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "social-studies",
+      "subjectName": "Social Studies",
+      "paperNum": 2,
+      "title": "G9 ECZ Social Studies Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/social-studies-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "agricultural-science",
+      "subjectName": "Agricultural Science",
+      "paperNum": 1,
+      "title": "G9 ECZ Agricultural Science Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/agricultural-science-paper-1"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "agricultural-science",
+      "subjectName": "Agricultural Science",
+      "paperNum": 2,
+      "title": "G9 ECZ Agricultural Science Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/agricultural-science-paper-2"
+    },
+    {
+      "grade": 9,
+      "subjectSlug": "art-and-design",
+      "subjectName": "Art and Design",
+      "paperNum": 1,
+      "title": "G9 ECZ Art and Design Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-9/art-and-design-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "additional-mathematics",
+      "subjectName": "Additional Mathematics",
+      "paperNum": 2,
+      "title": "G12 ECZ Additional Mathematics Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/additional-mathematics-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "agricultural-science",
+      "subjectName": "Agricultural Science",
+      "paperNum": 1,
+      "title": "G12 ECZ Agricultural Science Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/agricultural-science-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "agricultural-science",
+      "subjectName": "Agricultural Science",
+      "paperNum": 3,
+      "title": "G12 ECZ Agricultural Science Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/agricultural-science-paper-3"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "art-and-design",
+      "subjectName": "Art and Design",
+      "paperNum": 1,
+      "title": "G12 ECZ Art and Design Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/art-and-design-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "art-and-design",
+      "subjectName": "Art and Design",
+      "paperNum": 2,
+      "title": "G12 ECZ Art and Design Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/art-and-design-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "art-and-design",
+      "subjectName": "Art and Design",
+      "paperNum": 4,
+      "title": "G12 ECZ Art and Design Paper 4",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/art-and-design-paper-4"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "biology",
+      "subjectName": "Biology",
+      "paperNum": 1,
+      "title": "G12 ECZ Biology Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/biology-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "biology",
+      "subjectName": "Biology",
+      "paperNum": 2,
+      "title": "G12 ECZ Biology Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/biology-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "biology",
+      "subjectName": "Biology",
+      "paperNum": 3,
+      "title": "G12 ECZ Biology Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/biology-paper-3"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "biology",
+      "subjectName": "Biology",
+      "paperNum": 6,
+      "title": "G12 ECZ Biology Paper 6",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/biology-paper-6"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "chemistry",
+      "subjectName": "Chemistry",
+      "paperNum": 1,
+      "title": "G12 ECZ Chemistry Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/chemistry-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "chemistry",
+      "subjectName": "Chemistry",
+      "paperNum": 2,
+      "title": "G12 ECZ Chemistry Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/chemistry-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "chemistry",
+      "subjectName": "Chemistry",
+      "paperNum": 3,
+      "title": "G12 ECZ Chemistry Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/chemistry-paper-3"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "chinese",
+      "subjectName": "Chinese",
+      "paperNum": 0,
+      "title": "G12 ECZ Chinese",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/chinese"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "chitonga",
+      "subjectName": "Chitonga",
+      "paperNum": 1,
+      "title": "G12 ECZ Chitonga Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/chitonga-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "chitonga",
+      "subjectName": "Chitonga",
+      "paperNum": 2,
+      "title": "G12 ECZ Chitonga Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/chitonga-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "cinyanja",
+      "subjectName": "Cinyanja",
+      "paperNum": 1,
+      "title": "G12 ECZ Cinyanja Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/cinyanja-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "cinyanja",
+      "subjectName": "Cinyanja",
+      "paperNum": 2,
+      "title": "G12 ECZ Cinyanja Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/cinyanja-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "civic-education",
+      "subjectName": "Civic Education",
+      "paperNum": 1,
+      "title": "G12 ECZ Civic Education Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/civic-education-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "civic-education",
+      "subjectName": "Civic Education",
+      "paperNum": 2,
+      "title": "G12 ECZ Civic Education Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/civic-education-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "commerce",
+      "subjectName": "Commerce",
+      "paperNum": 0,
+      "title": "G12 ECZ Commerce",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/commerce"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "computer-studies",
+      "subjectName": "Computer Studies",
+      "paperNum": 1,
+      "title": "G12 ECZ Computer Studies Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/computer-studies-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "computer-studies",
+      "subjectName": "Computer Studies",
+      "paperNum": 2,
+      "title": "G12 ECZ Computer Studies Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/computer-studies-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "design-and-technology",
+      "subjectName": "Design and Technology",
+      "paperNum": 1,
+      "title": "G12 ECZ Design and Technology Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/design-and-technology-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "design-and-technology",
+      "subjectName": "Design and Technology",
+      "paperNum": 2,
+      "title": "G12 ECZ Design and Technology Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/design-and-technology-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "english-language",
+      "subjectName": "English Language",
+      "paperNum": 1,
+      "title": "G12 ECZ English Language Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/english-language-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "english-language",
+      "subjectName": "English Language",
+      "paperNum": 2,
+      "title": "G12 ECZ English Language Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/english-language-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "fashion-and-fabrics",
+      "subjectName": "Fashion and Fabrics",
+      "paperNum": 1,
+      "title": "G12 ECZ Fashion and Fabrics Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/fashion-and-fabrics-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "fashion-and-fabrics",
+      "subjectName": "Fashion and Fabrics",
+      "paperNum": 2,
+      "title": "G12 ECZ Fashion and Fabrics Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/fashion-and-fabrics-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "french",
+      "subjectName": "French",
+      "paperNum": 1,
+      "title": "G12 ECZ French Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/french-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "french",
+      "subjectName": "French",
+      "paperNum": 2,
+      "title": "G12 ECZ French Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/french-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "french",
+      "subjectName": "French",
+      "paperNum": 3,
+      "title": "G12 ECZ French Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/french-paper-3"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "french",
+      "subjectName": "French",
+      "paperNum": 5,
+      "title": "G12 ECZ French Paper 5",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/french-paper-5"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "geography",
+      "subjectName": "Geography",
+      "paperNum": 1,
+      "title": "G12 ECZ Geography Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/geography-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "geography",
+      "subjectName": "Geography",
+      "paperNum": 2,
+      "title": "G12 ECZ Geography Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/geography-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "geometrical-and-mechanical-drawing",
+      "subjectName": "Geometrical and Mechanical Drawing",
+      "paperNum": 1,
+      "title": "G12 ECZ Geometrical and Mechanical Drawing Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/geometrical-and-mechanical-drawing-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "geometrical-and-mechanical-drawing",
+      "subjectName": "Geometrical and Mechanical Drawing",
+      "paperNum": 2,
+      "title": "G12 ECZ Geometrical and Mechanical Drawing Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/geometrical-and-mechanical-drawing-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "history",
+      "subjectName": "History",
+      "paperNum": 1,
+      "title": "G12 ECZ History Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/history-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "history",
+      "subjectName": "History",
+      "paperNum": 2,
+      "title": "G12 ECZ History Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/history-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "icibemba",
+      "subjectName": "ICibemba",
+      "paperNum": 1,
+      "title": "G12 ECZ ICibemba Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/icibemba-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "kiikaonde",
+      "subjectName": "Kiikaonde",
+      "paperNum": 1,
+      "title": "G12 ECZ Kiikaonde Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/kiikaonde-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "kiikaonde",
+      "subjectName": "Kiikaonde",
+      "paperNum": 2,
+      "title": "G12 ECZ Kiikaonde Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/kiikaonde-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "literature",
+      "subjectName": "Literature",
+      "paperNum": 1,
+      "title": "G12 ECZ Literature Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/literature-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "literature",
+      "subjectName": "Literature",
+      "paperNum": 2,
+      "title": "G12 ECZ Literature Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/literature-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "lunda",
+      "subjectName": "Lunda",
+      "paperNum": 1,
+      "title": "G12 ECZ Lunda Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/lunda-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "lunda",
+      "subjectName": "Lunda",
+      "paperNum": 2,
+      "title": "G12 ECZ Lunda Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/lunda-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "luvale",
+      "subjectName": "Luvale",
+      "paperNum": 1,
+      "title": "G12 ECZ Luvale Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/luvale-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "luvale",
+      "subjectName": "Luvale",
+      "paperNum": 2,
+      "title": "G12 ECZ Luvale Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/luvale-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "mathematics",
+      "subjectName": "Mathematics",
+      "paperNum": 1,
+      "title": "G12 ECZ Mathematics Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/mathematics-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "mathematics",
+      "subjectName": "Mathematics",
+      "paperNum": 2,
+      "title": "G12 ECZ Mathematics Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/mathematics-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "metal-work",
+      "subjectName": "Metal Work",
+      "paperNum": 1,
+      "title": "G12 ECZ Metal Work Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/metal-work-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "metal-work",
+      "subjectName": "Metal Work",
+      "paperNum": 2,
+      "title": "G12 ECZ Metal Work Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/metal-work-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "musical-arts-education",
+      "subjectName": "Musical Arts Education",
+      "paperNum": 1,
+      "title": "G12 ECZ Musical Arts Education Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/musical-arts-education-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "musical-arts-education",
+      "subjectName": "Musical Arts Education",
+      "paperNum": 2,
+      "title": "G12 ECZ Musical Arts Education Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/musical-arts-education-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "musical-arts-education",
+      "subjectName": "Musical Arts Education",
+      "paperNum": 3,
+      "title": "G12 ECZ Musical Arts Education Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/musical-arts-education-paper-3"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "musical-arts-education",
+      "subjectName": "Musical Arts Education",
+      "paperNum": 4,
+      "title": "G12 ECZ Musical Arts Education Paper 4",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/musical-arts-education-paper-4"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "physical-education",
+      "subjectName": "Physical Education",
+      "paperNum": 0,
+      "title": "G12 ECZ Physical Education",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/physical-education"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "physics",
+      "subjectName": "Physics",
+      "paperNum": 1,
+      "title": "G12 ECZ Physics Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/physics-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "physics",
+      "subjectName": "Physics",
+      "paperNum": 2,
+      "title": "G12 ECZ Physics Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/physics-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "physics",
+      "subjectName": "Physics",
+      "paperNum": 3,
+      "title": "G12 ECZ Physics Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/physics-paper-3"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "principles-of-accounts",
+      "subjectName": "Principles of Accounts",
+      "paperNum": 1,
+      "title": "G12 ECZ Principles of Accounts Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/principles-of-accounts-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "principles-of-accounts",
+      "subjectName": "Principles of Accounts",
+      "paperNum": 2,
+      "title": "G12 ECZ Principles of Accounts Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/principles-of-accounts-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "religious-education-(2044)",
+      "subjectName": "Religious Education (2044)",
+      "paperNum": 0,
+      "title": "G12 ECZ Religious Education (2044)",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/religious-education-(2044)"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "religious-education-(2046)",
+      "subjectName": "Religious Education (2046)",
+      "paperNum": 0,
+      "title": "G12 ECZ Religious Education (2046)",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/religious-education-(2046)"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "science",
+      "subjectName": "Science",
+      "paperNum": 1,
+      "title": "G12 ECZ Science Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/science-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "science",
+      "subjectName": "Science",
+      "paperNum": 2,
+      "title": "G12 ECZ Science Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/science-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "science",
+      "subjectName": "Science",
+      "paperNum": 3,
+      "title": "G12 ECZ Science Paper 3",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/science-paper-3"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "silozi",
+      "subjectName": "Silozi",
+      "paperNum": 1,
+      "title": "G12 ECZ Silozi Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/silozi-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "silozi",
+      "subjectName": "Silozi",
+      "paperNum": 2,
+      "title": "G12 ECZ Silozi Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/silozi-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "woodwork",
+      "subjectName": "Woodwork",
+      "paperNum": 1,
+      "title": "G12 ECZ Woodwork Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/woodwork-paper-1"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "woodwork",
+      "subjectName": "Woodwork",
+      "paperNum": 2,
+      "title": "G12 ECZ Woodwork Paper 2",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/woodwork-paper-2"
+    },
+    {
+      "grade": 12,
+      "subjectSlug": "additional-mathematics",
+      "subjectName": "Additional Mathematics",
+      "paperNum": 1,
+      "title": "G12 ECZ Additional Mathematics Paper 1",
+      "source": "zambiapapers.com",
+      "sourceUrl": "https://www.zambiapapers.com/grade-12/additional-mathematics-paper-1"
+    }
+  ]
+}

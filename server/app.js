@@ -7,6 +7,7 @@ import { rateLimit, trackStats, getUsage } from "./rateLimit.js";
 import { sendCsv } from "./csv.js";
 import { seedAdminIfNeeded, loginAdmin, changePassword, listAdmins, createAdmin, requireAdmin, requireSuperAdmin, setAdminStatus, removeAdmin } from "./admin.js";
 import { runSync } from "./sync.js";
+import { createUser, loginUser, verifyAuth, requireUser, linkJohnWeb, changePassword, listUsers } from "./user-auth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, "..", "dist");
@@ -274,6 +275,63 @@ app.get("/api/sd/usage", (req, res) => {
 app.get("/api/sd/keys", (req, res) => {
   const keys = readJSON("keys.json") || [];
   res.json(keys.map(({ key, name, active, createdAt }) => ({ key: key.slice(0, 8) + "…", name, active, createdAt })));
+});
+
+/* ── user auth (connect app) ─────────────────────── */
+app.post("/api/user/register", (req, res) => {
+  const { name, email, password } = req.body || {};
+  if (!name || !email || !password) return res.status(400).json({ error: "name, email, password required" });
+  const result = createUser(name, email, password);
+  if (result.error) return res.status(409).json(result);
+  res.status(201).json(result);
+});
+
+app.post("/api/user/login", (req, res) => {
+  const { email, password } = req.body || {};
+  if (!email || !password) return res.status(400).json({ error: "email and password required" });
+  const result = loginUser(email, password);
+  if (result.error) return res.status(401).json(result);
+  res.json(result);
+});
+
+app.get("/api/user/me", requireUser, (req, res) => {
+  res.json({ id: req.user.id, name: req.user.name, email: req.user.email, role: req.user.role, createdAt: req.user.createdAt, linkedJohnWebEmail: req.user.linkedJohnWebEmail });
+});
+
+app.post("/api/user/link-johnweb", requireUser, (req, res) => {
+  const { email } = req.body || {};
+  if (!email) return res.status(400).json({ error: "JohnWeb email required" });
+  const result = linkJohnWeb(req.user.id, email);
+  res.json(result);
+});
+
+app.post("/api/user/change-password", requireUser, (req, res) => {
+  const { oldPassword, newPassword } = req.body || {};
+  if (!oldPassword || !newPassword) return res.status(400).json({ error: "oldPassword and newPassword required" });
+  const result = changePassword(req.user.id, oldPassword, newPassword);
+  if (result.error) return res.status(400).json(result);
+  res.json(result);
+});
+
+app.get("/api/user/credits", requireUser, (req, res) => {
+  const credits = readJSON("credits.json") || {};
+  const mine = credits[req.user.id] || { balance: 0, history: [] };
+  const subs = readJSON("subscriptions.json") || {};
+  const mySub = subs[req.user.id] || null;
+  res.json({ balance: mine.balance, history: mine.history.slice(-20), subscription: mySub });
+});
+
+const CREDIT_PACKS = { starter: { credits: 2000, price: 20 }, growth: { credits: 10000, price: 75 }, power: { credits: 35000, price: 200 } };
+
+app.post("/api/user/buy-credits", requireUser, (req, res) => {
+  const { packId } = req.body || {};
+  const pack = CREDIT_PACKS[packId];
+  if (!pack) return res.status(400).json({ error: "unknown pack" });
+  const credits = readJSON("credits.json") || {};
+  if (!credits[req.user.id]) credits[req.user.id] = { balance: 0, history: [] };
+  credits[req.user.id].history.push({ type: "purchase", packId, credits: pack.credits, price: pack.price, at: new Date().toISOString() });
+  writeJSON("credits.json", credits);
+  res.json({ ok: true, credits: pack.credits, price: pack.price, message: `Invoice generated for K${pack.price}. Credits will be added once payment is confirmed.` });
 });
 
 /* ── admin routes ─────────────────────────────────── */
