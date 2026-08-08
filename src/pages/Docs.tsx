@@ -3,13 +3,18 @@ import { usePageTitle } from "../lib/usePageTitle";
 const API = "/api/sd";
 
 const endpoints = [
-  { method: "GET", path: "/stats", desc: "Overview counts (subjects, papers, questions)", params: [] },
+  { method: "GET", path: "/stats", desc: "Overview counts (ECZ subjects, papers, questions)", params: [] },
   { method: "GET", path: "/subjects", desc: "All subjects with nested papers", params: [] },
   { method: "GET", path: "/papers", desc: "Paper list", params: ["subjectId", "grade", "year"] },
   { method: "GET", path: "/papers/:id", desc: "Full paper + questions + model answers", params: [] },
   { method: "GET", path: "/questions", desc: "Question feed (across all papers)", params: ["subjectId", "grade", "limit"] },
-  { method: "GET", path: "/search?q=", desc: "Search questions by keyword", params: ["q (required)"] },
-  { method: "GET", path: "/sync-state", desc: "Last data sync status", params: [] },
+  { method: "GET", path: "/search?q=", desc: "Search ECZ questions by keyword", params: ["q (required)"] },
+  { method: "GET", path: "/provinces", desc: "Zambia's 10 provinces + coordinates", params: [] },
+  { method: "GET", path: "/districts", desc: "Zambia's 116 districts", params: ["provinceId"] },
+  { method: "GET", path: "/constituencies", desc: "Zambia's 156 constituencies", params: ["districtId"] },
+  { method: "GET", path: "/wards", desc: "Zambia's ~1,853 wards", params: ["districtId"] },
+  { method: "GET", path: "/schools", desc: "Zambian schools with lat/lon", params: ["q", "lat", "lon", "radiusKm", "limit"] },
+  { method: "GET", path: "/sync-state", desc: "Last data sync status (all sources)", params: [] },
 ];
 
 export default function Docs() {

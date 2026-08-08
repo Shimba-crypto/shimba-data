@@ -61,6 +61,97 @@ app.get("/api/sd/papers/:id", (req, res) => {
   res.json(paper);
 });
 
+/* ── admin divisions ──────────────────────────────── */
+app.get("/api/sd/provinces", (req, res) => {
+  const data = readJSON("provinces.json");
+  if (!data) return res.status(503).json({ error: "data not synced yet" });
+  if (sendCsv(req, res, data.map((p) => ({ id: p.id, name: p.name?.en, lat: p.geo?.lat, lon: p.geo?.lon, districts: p.children_count?.district, constituencies: p.children_count?.constituency, wards: p.children_count?.ward })))) return;
+  res.json(data);
+});
+
+app.get("/api/sd/districts", (req, res) => {
+  const data = readJSON("districts.json");
+  if (!data) return res.status(503).json({ error: "data not synced yet" });
+  let out = data;
+  if (req.query.provinceId) out = out.filter((d) => d.parent?.id === req.query.provinceId);
+  if (req.query.limit) out = out.slice(0, parseInt(req.query.limit));
+  if (sendCsv(req, res, out.map((d) => ({ id: d.id, name: d.name?.en, province: d.parent?.name?.en, provinceId: d.parent?.id, lat: d.geo?.lat, lon: d.geo?.lon, constituencies: d.children_count?.constituency, wards: d.children_count?.ward })))) return;
+  res.json(out);
+});
+
+app.get("/api/sd/constituencies", (req, res) => {
+  const data = readJSON("constituencies.json");
+  if (!data) return res.status(503).json({ error: "data not synced yet" });
+  let out = data;
+  if (req.query.districtId) out = out.filter((c) => c.parent?.id === req.query.districtId);
+  if (sendCsv(req, res, out.map((c) => ({ id: c.id, name: c.name?.en, district: c.parent?.name?.en, districtId: c.parent?.id, wards: c.children_count?.ward })))) return;
+  res.json(out);
+});
+
+app.get("/api/sd/wards", (req, res) => {
+  const data = readJSON("wards.json");
+  if (!data) return res.status(503).json({ error: "data not synced yet" });
+  const hasFilter = req.query.constituencyId || req.query.districtId || req.query.provinceId;
+  if (!hasFilter) {
+    return res.status(400).json({
+      error: "provide at least one filter: constituencyId, districtId, or provinceId",
+      total: data.length,
+      example: "/api/sd/wards?districtId=ZM101001",
+    });
+  }
+  let out = data;
+  if (req.query.constituencyId) {
+    out = out.filter((w) => w.parent?.id === req.query.constituencyId);
+  } else if (req.query.districtId) {
+    const constituencies = readJSON("constituencies.json") || [];
+    const cIds = new Set(constituencies.filter((c) => c.parent?.id === req.query.districtId).map((c) => c.id));
+    out = out.filter((w) => cIds.has(w.parent?.id));
+  } else if (req.query.provinceId) {
+    const districts = readJSON("districts.json") || [];
+    const constituencies = readJSON("constituencies.json") || [];
+    const dIds = new Set(districts.filter((d) => d.parent?.id === req.query.provinceId).map((d) => d.id));
+    const cIds = new Set(constituencies.filter((c) => dIds.has(c.parent?.id)).map((c) => c.id));
+    out = out.filter((w) => cIds.has(w.parent?.id));
+  }
+  if (req.query.limit) out = out.slice(0, parseInt(req.query.limit));
+  if (sendCsv(req, res, out.map((w) => ({ id: w.id, name: w.name?.en, constituency: w.parent?.name?.en, constituencyId: w.parent?.id })))) return;
+  res.json(out);
+});
+
+function haversineKm(lat1, lon1, lat2, lon2) {
+  const R = 6371;
+  const toRad = (d) => (d * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+app.get("/api/sd/schools", (req, res) => {
+  const data = readJSON("schools.json");
+  if (!data) return res.status(503).json({ error: "data not synced yet" });
+  if (!req.query.q && !(req.query.lat && req.query.lon)) {
+    return res.status(400).json({
+      error: "provide q (name search) or lat+lon (proximity) filter",
+      total: data.length,
+      example: "/api/sd/schools?q=kitwe or /api/sd/schools?lat=-15.477&lon=29.18&radiusKm=30",
+    });
+  }
+  let out = data;
+  if (req.query.q) {
+    const q = req.query.q.toLowerCase();
+    out = out.filter((s) => s.name.toLowerCase().includes(q) || (s.amenity || "").toLowerCase().includes(q));
+  }
+  if (req.query.lat && req.query.lon && req.query.radiusKm) {
+    const lat = parseFloat(req.query.lat), lon = parseFloat(req.query.lon), r = parseFloat(req.query.radiusKm);
+    out = out
+      .filter((s) => haversineKm(lat, lon, s.lat, s.lon) <= r)
+      .map((s) => ({ ...s, distanceKm: Math.round(haversineKm(lat, lon, s.lat, s.lon) * 100) / 100 }));
+  }
+  if (req.query.limit) out = out.slice(0, parseInt(req.query.limit));
+  if (sendCsv(req, res, out.map((s) => ({ name: s.name, amenity: s.amenity, level: s.level, lat: s.lat, lon: s.lon, distanceKm: s.distanceKm ?? null })))) return;
+  res.json(out);
+});
+
 app.get("/api/sd/questions", (req, res) => {
   const details = readJSON("paper-details.json") || {};
   let qs = [];
@@ -131,7 +222,18 @@ app.get("/api/sd/keys", (req, res) => {
 
 app.get("/api/sd/_health", (req, res) => {
   const stats = readJSON("stats.json");
-  res.json({ ok: !!stats, time: new Date().toISOString(), dataReady: !!stats });
+  const provinces = readJSON("provinces.json");
+  const schools = readJSON("schools.json");
+  res.json({
+    ok: !!stats && !!provinces,
+    time: new Date().toISOString(),
+    dataReady: !!stats,
+    datasets: {
+      ecz: stats ? { subjects: stats.subjects, papers: stats.papers, questions: stats.questions } : null,
+      admin: provinces ? { provinces: provinces.length, districts: (readJSON("districts.json") || []).length, constituencies: (readJSON("constituencies.json") || []).length, wards: (readJSON("wards.json") || []).length } : null,
+      schools: schools ? schools.length : null,
+    },
+  });
 });
 
 // Serve built frontend

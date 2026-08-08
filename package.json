@@ -11,6 +11,7 @@
     "sync": "node server/sync.js"
   },
   "dependencies": {
+    "adm-zip": "^0.5.16",
     "cors": "^2.8.5",
     "express": "^4.21.0",
     "react": "^19.0.0",

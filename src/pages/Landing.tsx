@@ -52,10 +52,11 @@ export default function Landing() {
       </section>
 
       <section className="max-w-5xl mx-auto px-4 py-12">
-        <div className="grid sm:grid-cols-3 gap-6 text-center">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {[
-            ["📊", "Subjects & Papers", `${stats?.subjects ?? "—"} subjects · ${stats?.papers ?? "—"} papers`],
-            ["❓", "Real questions", `${stats?.questions ?? "—"} ECZ questions with model answers`],
+            ["📊", "ECZ Papers", `${stats?.subjects ?? "—"} subjects · ${stats?.questions ?? "—"} questions`],
+            ["🗺️", "Admin divisions", "10 provinces · 116 districts · 1,853 wards"],
+            ["🏫", "Schools", "Zambian education facilities with coordinates"],
             ["⚡", "CSV + JSON", "Same endpoint, ?format=csv for spreadsheets"],
           ].map(([icon, t, s]) => (
             <div key={t} className="bg-white rounded-xl p-6 border shadow-sm">
@@ -129,11 +130,20 @@ export default function Landing() {
           <p className="text-gray-300 text-sm mb-6">No key needed — these are open endpoints:</p>
           <div className="bg-black/30 rounded-xl p-4 text-left font-mono text-sm space-y-2 overflow-x-auto">
             <p className="text-yellow-400">GET /api/sd/stats</p>
-            <p className="text-yellow-400">GET /api/sd/subjects</p>
             <p className="text-yellow-400">GET /api/sd/papers?grade=7</p>
-            <p className="text-yellow-400">GET /api/sd/search?q=president</p>
+            <p className="text-yellow-400">GET /api/sd/districts?provinceId=ZM101</p>
+            <p className="text-yellow-400">GET /api/sd/schools?q=kitwe&amp;radiusKm=50</p>
           </div>
           <Link to="/docs" className="mt-6 inline-block text-yellow-400 hover:underline">See full reference →</Link>
+        </div>
+      </section>
+
+      <section className="max-w-3xl mx-auto px-4 pb-16">
+        <h2 className="text-2xl font-bold mb-4 text-white">Data sources</h2>
+        <div className="grid sm:grid-cols-3 gap-4 text-sm">
+          <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">ECZ Papers</strong><br/>from JohnWeb (our own platform)</div>
+          <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">Admin map</strong><br/>openadmindata.org (CC-BY-4.0)</div>
+          <div className="bg-white/10 rounded-lg p-3"><strong className="text-yellow-300">Schools</strong><br/>OpenStreetMap / HDX</div>
         </div>
       </section>
     </div>
