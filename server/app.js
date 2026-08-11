@@ -366,7 +366,8 @@ const AUTHER = "https://auther-zblr.onrender.com";
 function ssoAutherUser(d) {
   let user = findUserByEmail(d.user.email);
   if (!user) {
-    createUser({ name: d.user.name || d.user.email, email: d.user.email, password: crypto.randomBytes(16).toString("hex") });
+    const created = createUser(d.user.name || d.user.email, d.user.email, crypto.randomBytes(16).toString("hex"));
+    if (created.error) return null;
     user = findUserByEmail(d.user.email);
   }
   return user;
