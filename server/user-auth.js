@@ -57,6 +57,8 @@ export function findUserByEmail(email) {
   return users.find((u) => u.email.toLowerCase() === email.toLowerCase());
 }
 
+export { signToken };
+
 export function createUser(name, email, password) {
   const users = read(USERS_FILE, []);
   if (users.some((u) => u.email.toLowerCase() === email.toLowerCase())) {
@@ -118,7 +120,7 @@ export function changePassword(userId, oldPass, newPass) {
 }
 
 export function requireUser(req, res, next) {
-  const token = req.headers["x-user-token"] || req.query.token;
+  const token = req.cookies?.nsp_token || req.headers["x-user-token"] || req.query.token;
   const user = verifyAuth(token);
   if (!user) return res.status(401).json({ error: "login required" });
   req.user = user;

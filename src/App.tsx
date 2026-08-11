@@ -16,6 +16,14 @@ export default function App() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
+    // Handle SSO redirect (cookie set by callback)
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("sso") === "1") {
+      window.history.replaceState({}, "", "/dashboard");
+    }
+  }, []);
+
+  useEffect(() => {
     if (token) {
       localStorage.setItem("sd-user-token", token);
       fetch("/api/user/me", { headers: { "X-User-Token": token } })
@@ -24,7 +32,8 @@ export default function App() {
         .catch(() => setUser(null));
     } else {
       localStorage.removeItem("sd-user-token");
-      setUser(null);
+      // Try cookie-based auth (SSO)
+      fetch("/api/user/me").then((r) => (r.ok ? r.json() : null)).then((d) => setUser(d)).catch(() => setUser(null));
     }
   }, [token]);
 

@@ -33,6 +33,10 @@ export default function Login({ onLogin }: { onLogin: (token: string, user: any)
           {loading ? "Logging in..." : "Log in"}
         </button>
       </form>
+      <div className="my-4 flex items-center gap-3"><div className="flex-1 h-px bg-gray-200"/><span className="text-xs text-gray-400">or</span><div className="flex-1 h-px bg-gray-200"/></div>
+      <a href="/api/user/sso" className="w-full border border-violet-300 text-violet-700 text-sm font-medium py-2 rounded-md hover:bg-violet-50 flex items-center justify-center gap-2">
+        <span className="font-bold text-violet-600">A</span> Login with Auther
+      </a>
       <p className="text-sm text-gray-500 mt-5 text-center">
         No account? <Link to="/signup" className="text-gray-900 font-medium hover:underline">Sign up free</Link>
       </p>

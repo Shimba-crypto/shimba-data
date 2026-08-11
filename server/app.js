@@ -1,20 +1,23 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import path from "path";
+import crypto from "crypto";
 import { fileURLToPath } from "url";
 import { readJSON, writeJSON, initStorage } from "./storage.js";
 import { rateLimit, trackStats, getUsage } from "./rateLimit.js";
 import { sendCsv } from "./csv.js";
 import { seedAdminIfNeeded, loginAdmin, changePassword, listAdmins, createAdmin, requireAdmin, requireSuperAdmin, setAdminStatus, removeAdmin } from "./admin.js";
 import { runSync } from "./sync.js";
-import { createUser, loginUser, verifyAuth, requireUser, linkJohnWeb, changePassword as changeUserPassword, listUsers } from "./user-auth.js";
+import { createUser, loginUser, verifyAuth, requireUser, linkJohnWeb, changePassword as changeUserPassword, listUsers, signToken, findUserByEmail } from "./user-auth.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, "..", "dist");
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(cookieParser());
+app.use(express.json({ limit: "10kb" }));
 app.set("trust proxy", true);
 
 app.use("/api/sd", trackStats);
@@ -316,7 +319,19 @@ app.post("/api/user/login", (req, res) => {
   if (!email || !password) return res.status(400).json({ error: "email and password required" });
   const result = loginUser(email, password);
   if (result.error) return res.status(401).json(result);
+  // Set browser cookie for SSO
+  res.cookie("nsp_token", result.token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "lax",
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+  });
   res.json(result);
+});
+
+app.post("/api/user/logout", (req, res) => {
+  res.clearCookie("nsp_token");
+  res.json({ ok: true });
 });
 
 app.get("/api/user/me", requireUser, (req, res) => {
@@ -342,6 +357,77 @@ app.post("/api/user/change-password", requireUser, (req, res) => {
   const result = changeUserPassword(req.user.id, oldPassword, newPassword);
   if (result.error) return res.status(400).json(result);
   res.json(result);
+});
+
+/* ── SSO: Login with Auther ─────────────────────── */
+const AUTHER = "https://auther-zblr.onrender.com";
+
+// Verify an Auther token server-side, then create a local session.
+function ssoAutherUser(d) {
+  let user = findUserByEmail(d.user.email);
+  if (!user) {
+    createUser({ name: d.user.name || d.user.email, email: d.user.email, password: crypto.randomBytes(16).toString("hex") });
+    user = findUserByEmail(d.user.email);
+  }
+  return user;
+}
+
+// Redirect to Auther's authorize page
+app.get("/api/user/sso", (req, res) => {
+  res.redirect(`${AUTHER}/sso/authorize?client_id=shimbadata&redirect_uri=${encodeURIComponent("https://shimbadata.onrender.com/api/user/sso/callback")}`);
+});
+
+// Auther redirects back with ?code=
+app.get("/api/user/sso/callback", async (req, res) => {
+  const { code } = req.query;
+  if (!code) return res.redirect("/login?error=sso_failed");
+  try {
+    const r = await fetch(`${AUTHER}/sso/exchange`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ code }),
+      signal: AbortSignal.timeout(20000),
+    });
+    const d = await r.json();
+    if (!d.ok || !d.user) return res.redirect("/login?error=sso_failed");
+    const user = ssoAutherUser(d);
+    if (!user) return res.redirect("/login?error=sso_failed");
+
+    // Issue local token + cookie
+    const token = signToken({ userId: user.id, email: user.email });
+    const tokens = readJSON("tokens.json") || [];
+    tokens.push({ token, userId: user.id, expiresAt: Date.now() + 30 * 24 * 60 * 60 * 1000, createdAt: new Date().toISOString() });
+    writeJSON("tokens.json", tokens);
+    res.cookie("nsp_token", token, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 30 * 24 * 60 * 60 * 1000 });
+
+    res.redirect("/dashboard?sso=1");
+  } catch {
+    res.redirect("/login?error=sso_failed");
+  }
+});
+
+// Direct token entry (Auther dashboard "Sign in with Auther")
+app.get("/api/auth/sso", async (req, res) => {
+  const { token } = req.query;
+  if (!token) return res.redirect("/login?error=sso_failed");
+  try {
+    const r = await fetch(`${AUTHER}/api/auth/me`, {
+      headers: { "X-Auth-Token": token },
+      signal: AbortSignal.timeout(20000),
+    });
+    const d = await r.json();
+    if (!r.ok || !d.user) return res.redirect("/login?error=sso_failed");
+    const user = ssoAutherUser(d);
+    if (!user) return res.redirect("/login?error=sso_failed");
+    const local = signToken({ userId: user.id, email: user.email });
+    const tokens = readJSON("tokens.json") || [];
+    tokens.push({ token: local, userId: user.id, expiresAt: Date.now() + 30 * 24 * 60 * 60 * 1000, createdAt: new Date().toISOString() });
+    writeJSON("tokens.json", tokens);
+    res.cookie("nsp_token", local, { httpOnly: true, secure: true, sameSite: "lax", maxAge: 30 * 24 * 60 * 60 * 1000 });
+    res.redirect("/dashboard?sso=1&token=" + local);
+  } catch {
+    res.redirect("/login?error=sso_failed");
+  }
 });
 
 app.get("/api/user/credits", requireUser, (req, res) => {
