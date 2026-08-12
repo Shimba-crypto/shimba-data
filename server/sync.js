@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { writeJSON, readJSON } from "./storage.js";
+import { addFeedItem } from "./feed.js";
 import AdmZip from "adm-zip";
 
 const JOHNWEB = "https://johnweb-qncu.onrender.com";
@@ -192,6 +193,15 @@ export async function runSync() {
   const t0 = Date.now();
   console.log("[sync] pulling ECZ + admin + schools + health + universities + laws...");
 
+  // Snapshot state before syncing so the feed can report what's new.
+  const prevPapers = new Set((readJSON("papers.json") || []).map((p) => p.id));
+  const prevCounts = {
+    schools: (readJSON("schools.json") || []).length,
+    health: (readJSON("health-facilities.json") || []).length,
+    universities: (readJSON("universities.json") || []).length,
+    laws: (readJSON("laws.json") || []).length,
+  };
+
   const result = { ok: true, at: new Date().toISOString() };
   try {
     result.johnweb = await syncJohnWeb();
@@ -232,6 +242,47 @@ export async function runSync() {
   result.ms = Date.now() - t0;
   result.ok = !!(result.johnweb_ok && result.admin_ok);
   writeJSON("sync-state.json", result);
+
+  // ── feed events ──
+  if (result.johnweb_ok) {
+    const papers = readJSON("papers.json") || [];
+    const newPapers = papers.filter((p) => !prevPapers.has(p.id));
+    for (const p of newPapers.slice(0, 5)) {
+      addFeedItem({
+        type: "paper_added",
+        title: `Paper added: ${p.title}`,
+        body: `${p.subjectId || "ECZ"} · Grade ${p.grade || "?"} · ${p.year || "?"}`,
+        dataset: "papers",
+        meta: { id: p.id },
+      });
+    }
+    if (newPapers.length > 5) {
+      addFeedItem({
+        type: "paper_added",
+        title: `${newPapers.length - 5} more papers added`,
+        body: `ECZ papers synced from JohnWeb`,
+        dataset: "papers",
+        meta: { count: newPapers.length - 5 },
+      });
+    }
+    if (newPapers.length > 0) {
+      console.log(`[sync] ${newPapers.length} new papers`);
+    }
+  }
+
+  for (const [dataset, label] of [["schools", "school"], ["health", "health facility"], ["universities", "university"], ["laws", "law"]]) {
+    const key = dataset === "health" ? "health-facilities.json" : `${dataset}.json`;
+    const count = (readJSON(key) || []).length;
+    if (count !== prevCounts[dataset]) {
+      addFeedItem({
+        type: "dataset_synced",
+        title: `${label === "university" ? "Universities" : label === "law" ? "Laws" : dataset === "schools" ? "Schools" : "Health facilities"} refreshed`,
+        body: `${count.toLocaleString()} ${label}${count === 1 ? "" : "s"} in the dataset`,
+        dataset: dataset === "health" ? "health-facilities" : dataset,
+        meta: { count },
+      });
+    }
+  }
 
   console.log(
     `[sync] done in ${result.ms}ms — ecz:${result.johnweb_ok ? "ok" : "FAIL"} admin:${result.admin ? result.admin.provinces + "P/" + (result.admin.wards || 0) + "W" : "FAIL"} schools:${result.schools ? result.schools.schools : "FAIL"} health:${result.health ? result.health.facilities : "FAIL"} unis:${result.universities ? result.universities.universities : "FAIL"} laws:${result.laws ? result.laws.laws : "FAIL"}`

@@ -10,6 +10,8 @@ import { sendCsv } from "./csv.js";
 import { seedAdminIfNeeded, loginAdmin, changePassword, listAdmins, createAdmin, requireAdmin, requireSuperAdmin, setAdminStatus, removeAdmin } from "./admin.js";
 import { runSync } from "./sync.js";
 import { createUser, loginUser, verifyAuth, requireUser, linkJohnWeb, changePassword as changeUserPassword, listUsers, signToken, findUserByEmail } from "./user-auth.js";
+import { submitContribution, listContributions, approveContribution, rejectContribution } from "./contributions.js";
+import { getFeed } from "./feed.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.join(__dirname, "..", "dist");
@@ -242,6 +244,12 @@ app.get("/api/sd/search", (req, res) => {
   res.json({ query: q, count: results.length, results: results.slice(0, 50) });
 });
 
+app.get("/api/sd/feed", (req, res) => {
+  const limit = Math.min(Number(req.query.limit) || 30, 100);
+  const before = String(req.query.before || "");
+  res.json({ items: getFeed({ limit, before: before || undefined }) });
+});
+
 app.get("/api/sd/sync-state", (req, res) => {
   res.json(readJSON("sync-state.json") || { ok: false, note: "no sync yet" });
 });
@@ -277,6 +285,43 @@ app.get("/api/sd/keys/status/:key", (req, res) => {
   const found = keys.find((k) => k.key === req.params.key);
   if (!found) return res.status(404).json({ error: "key not found" });
   res.json({ key: found.key.slice(0, 8) + "...", project: found.project, status: found.status, createdAt: found.createdAt });
+});
+
+/* ── ShimbaData Collector ─────────────────────────── */
+// Accept user-contributed data (from the browser extension or CLI).
+// Auth is flexible: a valid X-SD-Key, a logged-in user (x-user-token), or
+// anonymous with an email in the body. Everything lands "pending" and is
+// moderated by admins before entering a public dataset.
+app.post("/api/sd/collect", (req, res) => {
+  const { dataset, entry, email } = req.body || {};
+  if (!dataset || !entry) return res.status(400).json({ error: "dataset and entry required" });
+
+  // Resolve submitter
+  let submitterEmail = "";
+  let source = "extension";
+  const keyHeader = req.headers["x-sd-key"];
+  const keys = readJSON("keys.json") || [];
+  const key = keyHeader && keys.find((k) => k.key === keyHeader && k.active !== false);
+  if (key) {
+    submitterEmail = key.email || "";
+    source = key.name === "shimsearch" ? "shimsearch" : "cli";
+  }
+  const userToken = req.headers["x-user-token"] || req.cookies?.nsp_token || req.query.token;
+  if (!submitterEmail && userToken) {
+    const user = verifyAuth(userToken);
+    if (user) { submitterEmail = user.email; source = "cli"; }
+  }
+  if (!submitterEmail) {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ error: "email required (or sign in / use an API key) — see /privacy for how it is used" });
+    }
+    submitterEmail = email;
+  }
+
+  const ip = (req.headers["x-forwarded-for"] || req.socket.remoteAddress || "").toString().split(",")[0].trim();
+  const result = submitContribution({ dataset, entry, email: submitterEmail, source, ip });
+  if (result.error) return res.status(400).json({ error: result.error });
+  res.status(201).json(result);
 });
 
 app.post("/api/user/key-request", requireUser, (req, res) => {
@@ -538,8 +583,24 @@ app.post("/api/admin/keys/:key/reject", requireAdmin, (req, res) => {
   res.json({ ok: true, key: found.key.slice(0, 8) + "…", project: found.project, status: "rejected" });
 });
 
-app.get("/api/admin/keys", requireAdmin, (req, res) => {
-  const keys = readJSON("keys.json") || [];
+app.get("/api/admin/contributions", requireAdmin, (req, res) => {
+  const { status } = req.query;
+  res.json(listContributions(status || "pending"));
+});
+
+app.post("/api/admin/contributions/:id/approve", requireAdmin, (req, res) => {
+  const result = approveContribution(req.params.id, req.admin.username);
+  if (result.error) return res.status(400).json(result);
+  res.json(result);
+});
+
+app.post("/api/admin/contributions/:id/reject", requireAdmin, (req, res) => {
+  const result = rejectContribution(req.params.id, req.admin.username, req.body?.reason);
+  if (result.error) return res.status(400).json(result);
+  res.json(result);
+});
+
+app.get("/api/admin/keys", requireAdmin, (req, res) => {  const keys = readJSON("keys.json") || [];
   res.json(keys.map((k) => ({
     key: k.key.slice(0, 8) + "…",
     name: k.name, project: k.project, company: k.company, email: k.email,

@@ -18,9 +18,11 @@ export default function Layout({ token, user, logout }: { token?: string; user?:
         </div>
         <nav className="flex-1 px-3 py-2 space-y-0.5">
           {nav("/", "Home")}
+          {nav("/feed", "Feed")}
           {nav("/docs", "Docs")}
           {nav("/usage", "Usage")}
           {nav("/status", "Status")}
+          {nav("/collect", "Collect")}
           {token && nav("/dashboard", "Dashboard")}
         </nav>
         <div className="px-5 py-4 border-t border-gray-200">

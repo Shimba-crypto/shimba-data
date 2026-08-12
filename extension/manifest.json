@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "ShimbaData Collector",
+  "version": "1.0.0",
+  "description": "Contribute Zambian education data — schools, ECZ past papers, health facilities and laws — to ShimbaData. Nothing is collected without your explicit action.",
+  "permissions": ["activeTab", "storage", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "ShimbaData Collector"
+  }
+}

@@ -20,7 +20,7 @@ export default function Admin() {
 
   if (!token || !me) return <Login onLogin={(t) => { setToken(t); localStorage.setItem("sd-admin-token", t); }} />;
 
-  const tabs = ["submissions", "keys", "admins", "stats", "tools"];
+  const tabs = ["submissions", "contributions", "keys", "admins", "stats", "tools"];
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-6">
@@ -41,6 +41,7 @@ export default function Admin() {
       </div>
 
       {tab === "submissions" && <Submissions token={token} />}
+      {tab === "contributions" && <Contributions token={token} />}
       {tab === "keys" && <AllKeys token={token} />}
       {tab === "admins" && <Admins token={token} me={me} />}
       {tab === "stats" && <Stats token={token} />}
@@ -117,6 +118,45 @@ function Submissions({ token }: { token: string }) {
             <div className="flex gap-2 shrink-0">
               <button onClick={() => act(s.key, "reject")} className="px-4 py-2 text-sm border border-red-300 text-red-700 rounded-lg hover:bg-red-50">Reject</button>
               <button onClick={() => act(s.key, "approve")} className="px-4 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700">Approve</button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function Contributions({ token }: { token: string }) {
+  const { data, loading, reload } = useFetch(token, "/contributions?status=pending");
+  async function act(id: string, action: "approve" | "reject") {
+    const reason = action === "reject" ? window.prompt("Rejection reason (optional):", "") : undefined;
+    await fetch(`${A}/contributions/${id}/${action}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Admin-Token": token },
+      body: JSON.stringify({ reason }),
+    });
+    reload();
+  }
+  if (loading) return <p className="text-gray-500">Loading...</p>;
+  if (!data || !data.length) return <p className="text-gray-500 bg-gray-50 rounded-lg p-6">No pending contributions. All clear.</p>;
+  return (
+    <div className="space-y-3">
+      <p className="text-sm text-gray-500">{data.length} pending — approving publishes the entry and posts it to the feed</p>
+      {data.map((c: any) => (
+        <div key={c.id} className="bg-white border rounded-xl p-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="font-semibold text-[#0a2540]">{c.entry?.name || c.entry?.title} <span className="text-sm font-normal text-gray-400">→ {c.dataset}</span></p>
+              <p className="text-sm text-gray-600 mt-0.5 truncate">{Object.entries(c.entry || {}).filter(([k]) => k !== "name" && k !== "title").map(([k, v]) => `${k}: ${String(v).slice(0, 40)}`).join(" · ") || <span className="italic text-gray-400">no extra fields</span>}</p>
+              <div className="flex gap-3 text-xs text-gray-400 mt-1">
+                <span>{c.email || "anonymous"}</span>
+                <span>via {c.source}</span>
+                <span>{c.at?.slice(0, 16).replace("T", " ")}</span>
+              </div>
+            </div>
+            <div className="flex gap-2 shrink-0">
+              <button onClick={() => act(c.id, "reject")} className="px-4 py-2 text-sm border border-red-300 text-red-700 rounded-lg hover:bg-red-50">Reject</button>
+              <button onClick={() => act(c.id, "approve")} className="px-4 py-2 text-sm bg-green-600 text-white rounded-lg hover:bg-green-700">Approve</button>
             </div>
           </div>
         </div>

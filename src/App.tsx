@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Landing from "./pages/Landing";
+import Feed from "./pages/Feed";
 import Docs from "./pages/Docs";
 import Usage from "./pages/Usage";
 import Status from "./pages/Status";
@@ -9,6 +10,9 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import Collect from "./pages/Collect";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -46,9 +50,13 @@ export default function App() {
       <Route path="/signup" element={<Signup onLogin={(t) => setToken(t)} />} />
       <Route element={<Layout token={token} user={user} logout={logout} />}>
         <Route path="/" element={<Landing />} />
+        <Route path="/feed" element={<Feed />} />
         <Route path="/docs" element={<Docs />} />
         <Route path="/usage" element={<Usage />} />
         <Route path="/status" element={<Status />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/collect" element={<Collect />} />
         <Route path="/dashboard" element={token ? <Dashboard token={token} user={user} onLogout={logout} /> : <Login onLogin={(t) => setToken(t)} />} />
         <Route path="*" element={<NotFound />} />
       </Route>
