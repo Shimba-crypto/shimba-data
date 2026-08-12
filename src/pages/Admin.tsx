@@ -289,11 +289,22 @@ function Stats({ token }: { token: string }) {
 
 function Tools({ token }: { token: string }) {
   const [msg, setMsg] = useState("");
-  const { data: sync, loading } = useFetch(token, "/sync-state");
+  const [sync, setSync] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  function loadSync() {
+    setLoading(true);
+    fetch("/api/sd/sync-state")
+      .then((r) => r.json())
+      .then(setSync)
+      .catch(() => setSync(null))
+      .finally(() => setLoading(false));
+  }
+  useEffect(loadSync, []);
   async function triggerSync() {
     setMsg("syncing...");
     await fetch(`${A}/sync`, { method: "POST", headers: { "X-Admin-Token": token } });
     setMsg("sync started - refreshes in background");
+    setTimeout(loadSync, 5000);
   }
   return (
     <div className="space-y-4">
